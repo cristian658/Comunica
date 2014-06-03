@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Comunicacion" table="comunicacion" catalog="bd_comunica">
+        <id name="idComunicacion" type="java.lang.Integer">
+            <column name="IdComunicacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="profesor" class="cl.ciisa.comunica.entity.Profesor" fetch="select">
+            <column name="profesor_IdProfesor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="apoderado" class="cl.ciisa.comunica.entity.Apoderado" fetch="select">
+            <column name="apoderado_IdApoderado" not-null="true" />
+        </many-to-one>
+        <set name="detallecomunicacions" table="detallecomunicacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comunicacion_Id_Comunicacion" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Detallecomunicacion" />
+        </set>
+    </class>
+</hibernate-mapping>
