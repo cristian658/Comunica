@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Alumno" table="alumno" catalog="bd_comunica">
+        <id name="idAlumno" type="java.lang.Integer">
+            <column name="IdAlumno" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="curso" class="cl.ciisa.comunica.entity.Curso" fetch="select">
+            <column name="curso_IdCurso" not-null="true" />
+        </many-to-one>
+        <property name="nombreAlumno" type="string">
+            <column name="NombreAlumno" length="45" />
+        </property>
+        <property name="apellidoPatAlumno" type="string">
+            <column name="ApellidoPatAlumno" length="200" />
+        </property>
+        <property name="apellidoMatAlumno" type="string">
+            <column name="ApellidoMatAlumno" length="200" />
+        </property>
+        <property name="fechaRegistroAlumno" type="timestamp">
+            <column name="FechaRegistroAlumno" length="19" />
+        </property>
+        <set name="apoderados" table="apoderado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="alumno_IdAlumno" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Apoderado" />
+        </set>
+    </class>
+</hibernate-mapping>

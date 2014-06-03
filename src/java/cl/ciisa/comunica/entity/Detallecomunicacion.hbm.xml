@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Detallecomunicacion" table="detallecomunicacion" catalog="bd_comunica">
+        <id name="idDetalleComunicacion" type="java.lang.Integer">
+            <column name="Id_Detalle_Comunicacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="comunicacion" class="cl.ciisa.comunica.entity.Comunicacion" fetch="select">
+            <column name="comunicacion_Id_Comunicacion" not-null="true" />
+        </many-to-one>
+        <property name="asunto" type="string">
+            <column name="Asunto" length="50" />
+        </property>
+        <property name="mensaje" type="string">
+            <column name="Mensaje" length="65535" />
+        </property>
+        <property name="fechaRegistroComunicacion" type="timestamp">
+            <column name="FechaRegistroComunicacion" length="19" />
+        </property>
+        <property name="emisor" type="java.lang.Integer">
+            <column name="Emisor" />
+        </property>
+        <property name="destinatario" type="java.lang.Integer">
+            <column name="Destinatario" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="Estado" />
+        </property>
+    </class>
+</hibernate-mapping>

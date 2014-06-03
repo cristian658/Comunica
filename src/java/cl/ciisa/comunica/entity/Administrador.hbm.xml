@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Administrador" table="administrador" catalog="bd_comunica">
+        <id name="idAdministrador" type="java.lang.Integer">
+            <column name="IdAdministrador" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreAdministrador" type="string">
+            <column name="NombreAdministrador" length="45" />
+        </property>
+        <property name="apellidoPaAdministrador" type="string">
+            <column name="ApellidoPaAdministrador" length="45" />
+        </property>
+        <property name="apellidoMatAdministrador" type="string">
+            <column name="ApellidoMatAdministrador" length="45" />
+        </property>
+        <property name="emailAdministrador" type="string">
+            <column name="EmailAdministrador" length="45" />
+        </property>
+        <property name="passwordAdministrador" type="string">
+            <column name="PasswordAdministrador" length="45" />
+        </property>
+        <property name="fechaRegistroAdministrador" type="timestamp">
+            <column name="FechaRegistroAdministrador" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
