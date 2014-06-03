@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_comunica?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping resource="cl/ciisa/comunica/entity/Alumno.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Curso.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Comunicacion.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Administrador.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Detallecomunicacion.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Apoderado.hbm.xml"/>
+    <mapping resource="cl/ciisa/comunica/entity/Profesor.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
