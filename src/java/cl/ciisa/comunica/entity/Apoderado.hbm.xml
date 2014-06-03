@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Apoderado" table="apoderado" catalog="bd_comunica">
+        <id name="idApoderado" type="java.lang.Integer">
+            <column name="IdApoderado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="alumno" class="cl.ciisa.comunica.entity.Alumno" fetch="select">
+            <column name="alumno_IdAlumno" not-null="true" />
+        </many-to-one>
+        <property name="nombreApoderado" type="string">
+            <column name="NombreApoderado" length="200" />
+        </property>
+        <property name="apellidoPatApoderado" type="string">
+            <column name="ApellidoPatApoderado" length="200" />
+        </property>
+        <property name="apellidoMatApoderado" type="string">
+            <column name="ApellidoMatApoderado" length="200" />
+        </property>
+        <property name="emailApoderado" type="string">
+            <column name="EmailApoderado" length="45" />
+        </property>
+        <property name="passwordApoderado" type="string">
+            <column name="PasswordApoderado" length="45" />
+        </property>
+        <property name="fechaRegistroApoderado" type="timestamp">
+            <column name="FechaRegistroApoderado" length="19" />
+        </property>
+        <set name="comunicacions" table="comunicacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="apoderado_IdApoderado" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Comunicacion" />
+        </set>
+    </class>
+</hibernate-mapping>

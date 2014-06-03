@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Profesor" table="profesor" catalog="bd_comunica">
+        <id name="idProfesor" type="java.lang.Integer">
+            <column name="IdProfesor" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="curso" class="cl.ciisa.comunica.entity.Curso" fetch="select">
+            <column name="curso_Id_Curso" not-null="true" />
+        </many-to-one>
+        <property name="nombreProfesor" type="string">
+            <column name="NombreProfesor" length="200" />
+        </property>
+        <property name="apellidoPatProfesor" type="string">
+            <column name="ApellidoPatProfesor" length="200" />
+        </property>
+        <property name="apellidoMatProfesor" type="string">
+            <column name="ApellidoMatProfesor" length="200" />
+        </property>
+        <property name="emailProfesor" type="string">
+            <column name="EmailProfesor" length="45" />
+        </property>
+        <property name="passwordProfesor" type="string">
+            <column name="PasswordProfesor" length="45" />
+        </property>
+        <property name="fechaRegistroProfesor" type="timestamp">
+            <column name="FechaRegistroProfesor" length="19" />
+        </property>
+        <set name="comunicacions" table="comunicacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="profesor_IdProfesor" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Comunicacion" />
+        </set>
+    </class>
+</hibernate-mapping>

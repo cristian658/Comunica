@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2014 22:16:50 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.ciisa.comunica.entity.Curso" table="curso" catalog="bd_comunica">
+        <id name="idCurso" type="java.lang.Integer">
+            <column name="IdCurso" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreCurso" type="string">
+            <column name="NombreCurso" length="200" />
+        </property>
+        <property name="fechaRegistroCurso" type="timestamp">
+            <column name="FechaRegistroCurso" length="19" />
+        </property>
+        <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="curso_IdCurso" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Alumno" />
+        </set>
+        <set name="profesors" table="profesor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="curso_Id_Curso" not-null="true" />
+            </key>
+            <one-to-many class="cl.ciisa.comunica.entity.Profesor" />
+        </set>
+    </class>
+</hibernate-mapping>
