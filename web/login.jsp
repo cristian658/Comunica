@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>  
-<s:set var="type" value="typeUser" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +15,8 @@
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <!-- Custom styles for this template -->
         <link href="css/cover.css" rel="stylesheet">
 
@@ -33,28 +34,39 @@
             <div class="site-wrapper-inner">
                 <div class="container cover-container">
                     <div class="masthead clearfix">
-                       <div class="inner">
+                        <div class="inner">
                             <h3 class="masthead-brand">Comunica</h3>
                             <ul class="nav masthead-nav">
-                                <li class="active"><a href="LoginAction.action?typeUser=Apoderado">Apoderado</a></li>
+                                <li><a href="LoginAction.action?typeUser=Apoderado">Apoderado</a></li>
                                 <li><a href="LoginAction.action?typeUser=Profesor">Profesor</a></li>
                                 <li><a href="LoginAction.action?typeUser=Administrador">Administrador</a></li>
                             </ul>
                         </div>
                     </div>
-                    <h2 class="form-signin-heading">Bienvenido <s:text name="type"></s:text></h2>
+                    <s:if test="hasActionErrors()">
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <s:actionerror/>
+                        </div>
+
+
+
+                    </s:if>
+                    <h2 class="form-signin-heading">Bienvenido <s:text name="%{typeUser}"></s:text></h2>
                     <s:form cssClass="form-signin" role="form"  action="LoginAction">  
-                        <s:textfield type="email" required = "" cssClass="form-control" placeholder="Email" name="user.email"></s:textfield>  
-                        <s:password cssClass="form-control" required = "" placeholder="Contresaña" name="user.clave"></s:password>  
+                        <s:textfield type="email" required="" cssClass="form-control" placeholder="Email" name="user.email"></s:textfield>  
+                        <s:password cssClass="form-control" required="" placeholder="Contresaña" name="user.clave"></s:password>  
+                        <s:hidden name="user.type" value="%{typeUser}" name="user.type"></s:hidden>
                         <s:submit cssClass="btn btn-lg btn-primary btn-block" value="Ingresar"></s:submit>  
                     </s:form> 
                     <div class="mastfoot">
                         <div class="inner">
-                            <p>Grupo 1</p>
+                            <p>Grupo EECC</p>
                         </div>
                     </div>
                 </div> <!-- /container -->
             </div>
         </div>
+        
     </body>
 </html>
