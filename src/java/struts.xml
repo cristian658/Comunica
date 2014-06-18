@@ -7,10 +7,20 @@
     <package name="cl.ciisa.comunica" extends="struts-default">
         
         <!-- Add your actions here -->
-        <action name="LoginAction" class="cl.ciisa.comunica.controller.LoginAction">
-            <result>/login.jsp</result>
+        <!-- aca se agregan la distintas acciones(controller para nosotros) que vamos a ocupar -->
+        <action name="LoginAction" class="cl.ciisa.comunica.controller.LoginAction" method="execute">
+            <result name="input">/login.jsp</result>
+            <result name="success" type="redirectAction">BandejaAction</result>
+            <result name="error">/login.jsp</result>
         </action>
-        
+        <action name="logoutAction" class="cl.ciisa.comunica.controller.LoginAction" method="logout" >
+            <result name="success" type="redirect">LoginAction.action?typeUser=Profesor</result>
+        </action>
+        <action name="BandejaAction" class="cl.ciisa.comunica.controller.BandejaAction" method="execute">
+            <result name="input">/bandeja.jsp</result>
+            <result name="success">/bandeja.jsp</result>
+            <result name="error" type="redirectAction">LoginAction</result>
+        </action>
     </package>
     
 </struts>
