@@ -21,6 +21,13 @@
             <result name="success">/bandeja.jsp</result>
             <result name="error" type="redirectAction">LoginAction</result>
         </action>
+        
+        <!-- Administrador -->
+        <action name="CursosAction" class="cl.ciisa.comunica.controller.admin.CursoAction" method="execute">
+            <result name="input">/admin/cursos.jsp</result>
+            <result name="success">/admin/cursos.jsp</result>
+            <result name="error">/admin/cursos.jsp</result>
+        </action>
     </package>
     
 </struts>

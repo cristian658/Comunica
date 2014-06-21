@@ -35,6 +35,7 @@ public class LoginAction extends ActionSupport  {
         if (user != null) {
             typeUser = this.getUser().getType();
             session = ActionContext.getContext().getSession();
+            session.put("id", this.getUser().getId());
             session.put("correo", this.getUser().getEmail());
             session.put("typeUser", this.getUser().getType());
             session.put("context", new Date());
@@ -44,7 +45,7 @@ public class LoginAction extends ActionSupport  {
     }
     /**
      * Acá se hace validacion por parte del servidor los campos correo y el tipo
-     * de usuario que esta ingresando {profesor,apoderadoy administrador}, en ella
+     * de usuario que esta ingresando {profesor,apoderado y administrador}, en ella
      * validamos si el usuario existe en la base de datos, asi como tambien validamos
      * si la contraseña fue ingresada correctamente
      */
