@@ -14,11 +14,18 @@ import org.hibernate.Session;
  */
 public class User {
     
+    public Integer id;
     public String email;
     public String clave;
     public String type;
     
+    public User(){}
     
+    public User(Integer id,String email,String type){
+        this.id = id;
+        this.email = email;
+        this.type = type;
+    }
     public String getEmail() {
         return email;
     }
@@ -42,6 +49,15 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     /**
      * se checkea el usuario de esta instancia en la base de datos pasando como
      * parametro el correo electronico (email) que ya viene seteado en el objeto
@@ -78,18 +94,21 @@ public class User {
             if (objects != null && objects.size()>0) {
                 if (objects.get(0) instanceof Profesor) {
                     Profesor p = (Profesor) objects.get(0);
+                    id = p.getIdProfesor();
                     if (!p.getPasswordProfesor().equals(this.getClave())) {
                         return false;
                     }
                 }
                 if (objects.get(0) instanceof Apoderado) {
                     Apoderado a = (Apoderado) objects.get(0);
+                    id = a.getIdApoderado();
                     if (!a.getPasswordApoderado().equals(this.getClave())) {
                         return false;
                     }
                 }
                 if (objects.get(0) instanceof Administrador) {
                     Administrador a = (Administrador) objects.get(0);
+                    id = a.getIdAdministrador();
                     if (!a.getPasswordAdministrador().equals(this.getClave())) {
                         return false;
                     }
@@ -98,8 +117,6 @@ public class User {
             }
         return false;
     }
-    
-    
-    
+
     
 }
