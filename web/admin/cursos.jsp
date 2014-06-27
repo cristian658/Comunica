@@ -15,69 +15,77 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Bienvenido <s:text name="%{#session.correo}"></s:text></title>
+        <title>Mantenedor - Cursos</title>
 
-            <!-- Bootstrap core CSS -->
-            <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-            <!-- Custom styles for this template -->
-            <link href="../css/cover.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="../css/cover.css" rel="stylesheet">
 
-            <!-- Just for debugging purposes. Don't actually copy this line! -->
-            <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <!-- Just for debugging purposes. Don't actually copy this line! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-            <!--[if lt IE 9]>
-              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-              <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-        </head>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-        <body>
-            <div class="site-wrapper">
-                <div class="site-wrapper-inner">
-                    <div class="cover-container">
-                        <div class="masthead clearfix">
-                            <div class="inner">
-                                <h3 class="masthead-brand">Comunica</h3>
-                            </div>
-                        </div>
-                        <div class="inner cover">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td>Curso</td>
-                                                <td>Fecha</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <s:iterator value="cursosList" > 
-                                            <tr> 
-                                                <td><s:property value="nombreCurso"/></td>
-                                                <td><s:property value="fechaRegistroCurso"/></td>
-                                            </tr>  
-                                        </s:iterator>  
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <s:if test="hasActionErrors()">
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <s:actionerror/>
+    <body>
+        <jsp:include page="menu.jsp" />
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+
+                    <div class="inner cover">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Agregar Curso</div>
+                                    <div class="panel-body">
+                                        <s:if test="hasActionErrors()">
+                                            <div class="alert alert-danger alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <s:actionerror/>
+                                            </div>
+                                        </s:if>
+                                        <s:form cssClass="form-inline" role="form" action="CursosAction"> 
+                                            <div class="form-group">
+                                                <label class="sr-only" for="inputCurso">Nombre Curso</label>
+                                                <input type="text" class="form-control" id="inputCurso" placeholder="Nombre Curso" name="nombre"> 
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                                        </s:form> 
                                     </div>
-                                </s:if>
-                                <s:form cssClass="form-inline" role="form" action="CursosAction"> 
-                                    <div class="form-group">
-                                        <label class="sr-only" for="inputCurso">Nombre Curso</label>
-                                        <s:textfield cssClass="form-control" id="inputCurso" placeholder="Nombre Curso" name="nombre"></s:textfield>  
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Ingresar</button>
-                                </s:form> 
+                                </div>
                             </div>
-
+                            <div class="col-md-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Cursos</div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <td>#</td>
+                                                    <td>Curso</td>
+                                                    <td>Fecha</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <s:iterator value="cursosList" > 
+                                                    <tr> 
+                                                        <td><s:property value="idCurso"/></td>
+                                                        <td><s:property value="nombreCurso"/></td>
+                                                        <td><s:date name="fechaRegistroCurso" format="dd/MM/yyyy" /></td>
+                                                    </tr>  
+                                                </s:iterator>  
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="mastfoot">
@@ -92,8 +100,8 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/docs.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/docs.min.js"></script>
     </body>
 </html>
 

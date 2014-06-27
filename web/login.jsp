@@ -56,7 +56,7 @@
                     <s:form cssClass="form-signin" role="form"  action="LoginAction">  
                         <s:textfield type="email" required="" cssClass="form-control" placeholder="Email" name="user.email"></s:textfield>  
                         <s:password cssClass="form-control" required="" placeholder="Contresaña" name="user.clave"></s:password>  
-                        <s:hidden name="user.type" value="%{typeUser}" name="user.type"></s:hidden>
+                        <s:hidden value="%{typeUser}" name="user.type"></s:hidden>
                         <s:submit cssClass="btn btn-lg btn-primary btn-block" value="Ingresar"></s:submit>  
                     </s:form> 
                     <div class="mastfoot">

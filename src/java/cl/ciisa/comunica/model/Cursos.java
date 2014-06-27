@@ -62,8 +62,7 @@ public class Cursos {
         s.beginTransaction();
          Query q = s.createQuery("Select c from Curso c where c.nombreCurso = :curso");
          q.setParameter("curso", curso);
-         Curso c = (Curso)q.list().get(0);
-         if (c!=null){
+         if(q.list().size()>0){
              return true;
          }
          return false;

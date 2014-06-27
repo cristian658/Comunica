@@ -4,6 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <constant name="struts.ui.theme" value="simple" />
     <package name="cl.ciisa.comunica" extends="struts-default">
         
         <!-- Add your actions here -->
@@ -19,6 +20,12 @@
         <action name="BandejaAction" class="cl.ciisa.comunica.controller.BandejaAction" method="execute">
             <result name="input">/bandeja.jsp</result>
             <result name="success">/bandeja.jsp</result>
+            <result name="error" type="redirectAction">LoginAction</result>
+        </action>
+        
+        <action name="NuevaComunicacionAction" class="cl.ciisa.comunica.controller.nuevaComunicacionAction" method="execute">
+            <result name="input">/nuevaComunicacion.jsp?option=${option}</result>
+            <result name="success">/nuevaComunicacion.jsp</result>
             <result name="error" type="redirectAction">LoginAction</result>
         </action>
         
