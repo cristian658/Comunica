@@ -31,55 +31,43 @@
               <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
               <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
             <![endif]-->
-        </head>
-        <body>
-
-            <div class="site-wrapper">
-                <div class="site-wrapper-inner">
-                    <div class="cover-container">
-                        <div class="masthead clearfix">
-                            <div class="inner">
-                                <h3 class="masthead-brand">Comunica</h3>
-                                <ul class="nav masthead-nav">
-                                    <li>Nueva Comunicación</li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seleccione <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Todo el Curso</a></li>
-                                            <li><a href="#">Individual</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="<%= request.getContextPath() %>/logoutAction.action">Salir</a></li>
-                                </ul>
+        <s:url action="NuevaComunicacionAction.action" var="urlTag" ></s:url>
+    </head>
+    <body>
+        <jsp:include page="include/menu.jsp" />
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="inner cover">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Bandeja de Comunicación</div>
+                            <div class="panel-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>Remitente</td>
+                                            <td>Asunto</td>
+                                            <td>Fecha</td>
+                                            <td>Estado</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <s:iterator value="comunicaciones" > 
+                                            <tr>
+                                                <td><a href="#"><span class="glyphicon glyphicon-folder-close"></span></a></td>
+                                                <td><s:property value="profesor.nombreProfesor"/></td>
+                                                <s:iterator value="detallecomunicacions" begin="0" end="0" > 
+                                                    <td><s:property value="asunto"/></td> 
+                                                    <td><s:date name="fechaRegistroComunicacion" format="dd/MM/yyyy hh:mm"/></td>
+                                                    <td><s:property value="estado"/></td>
+                                                </s:iterator> 
+                                            </tr>  
+                                        </s:iterator>  
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <div class="inner cover">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <td>Remitente</td>
-                                        <td>Asunto</td>
-                                        <td>Fecha</td>
-                                        <td>Estado</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <s:iterator value="comunicaciones" > 
-                                    <tr> 
-                                        <td><s:property value="profesor.nombreProfesor"/></td>
-                                        <s:iterator value="detallecomunicacions" begin="0" end="0" > 
-                                            <td><s:property value="asunto"/></td> 
-                                            <td><s:property value="fechaRegistroComunicacion"/></td>
-                                            <td><s:property value="estado"/></td>
-                                        </s:iterator> 
-                                        
-                                    </tr>  
-                                </s:iterator>  
-                            </tbody>
-
-                        </table>
-
                     </div>
 
                     <div class="mastfoot">

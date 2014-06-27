@@ -1,12 +1,10 @@
 package cl.ciisa.comunica.controller;
 
 import cl.ciisa.comunica.entity.Comunicacion;
-import cl.ciisa.comunica.entity.Detallecomunicacion;
 import cl.ciisa.comunica.model.Bandeja;
 import cl.ciisa.comunica.model.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
