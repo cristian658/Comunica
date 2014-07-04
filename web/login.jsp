@@ -14,11 +14,11 @@
         <title>Comunica - Sistema de Comunicaciones</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- Custom styles for this template -->
-        <link href="css/cover.css" rel="stylesheet">
+        <link href="bootstrap/css/cover.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
