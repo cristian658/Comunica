@@ -6,71 +6,104 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>  
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-        <title>Mantenedor - Cursos</title>
+    <title>Mantenedor - Curso</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="../css/cover.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="navbar.css" rel="stylesheet">
 
-        <!-- Just for debugging purposes. Don't actually copy this line! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <body>
-        <jsp:include page="menu.jsp" />
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                <div class="cover-container">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-                    <div class="inner cover">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Agregar Curso</div>
-                                    <div class="panel-body">
-                                        <s:if test="hasActionErrors()">
-                                            <div class="alert alert-danger alert-dismissable">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                <s:actionerror/>
-                                            </div>
-                                        </s:if>
-                                        <s:form cssClass="form-inline" role="form" action="CursosAction"> 
-                                            <div class="form-group">
-                                                <label class="sr-only" for="inputCurso">Nombre Curso</label>
-                                                <input type="text" class="form-control" id="inputCurso" placeholder="Nombre Curso" name="nombre"> 
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Ingresar</button>
-                                        </s:form> 
+  <body style="background-color: #FAFAFA">
+     
+    <div class="container" style="background-color: #FFFFFF">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Comunica</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="CursosAction.action">Curso</a></li>
+              <li><a href="ProfesorAction.action">Profesor</a></li>              
+              <li><a href="MatriculaAction.action">Matricula</a></li>
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Salir</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+        
+            <s:if test="hasActionErrors()">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <s:actionerror/>
+                </div>
+            </s:if>
+        
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="well">
+        <h2>Curso</h2>
+        <p>
+             <s:form cssClass="form-inline" role="form" action="CursosAction"> 
+                <div class="form-group">
+                    <label class="sr-only" for="inputCurso">Nombre Curso</label>
+                    <input type="text" class="form-control" id="inputCurso" placeholder="Nombre Curso" name="nombre"> 
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </s:form>
+      </p>
+      
+      </div>
+      <p>
+           <div class="row">
+                   <div class="col-xs-4">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                         <h3 class="panel-title"><strong>Cursos</strong></h3>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Cursos</div>
                                     <div class="panel-body">
                                         <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr>
-                                                    <td>#</td>
-                                                    <td>Curso</td>
-                                                    <td>Fecha</td>
+                                                    <td><strong>Id</strong></td>
+                                                    <td><strong>Curso</strong></td>
+                                                    <td><strong>Fecha</strong></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -86,22 +119,28 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mastfoot">
-                        <div class="inner">
-                            <p>Grupo EECC</p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/docs.min.js"></script>
-    </body>
+      </p>
+
+      <!--hr>
+
+      <footer>
+        <p>&copy; EECC 2014</p>
+      </footer-->
+      
+      <hr>
+      <footer>
+        <p>&copy; EECC 2014</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>
 

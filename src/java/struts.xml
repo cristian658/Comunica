@@ -35,6 +35,17 @@
             <result name="success">/admin/cursos.jsp</result>
             <result name="error">/admin/cursos.jsp</result>
         </action>
+        
+        <action name="MatriculaAction" class="cl.ciisa.comunica.controller.admin.MatriculaAction" method="execute">
+            <result name="input">/admin/matricula.jsp</result>
+            <result name="success">/admin/matricula.jsp</result>
+            <result name="error">/admin/matricula.jsp</result>
+        </action>
+        <action name="ProfesorAction" class="cl.ciisa.comunica.controller.admin.ProfesorAction" method="execute">
+            <result name="input">/admin/profesor.jsp</result>
+            <result name="success">/admin/profesor.jsp</result>
+            <result name="error">/admin/profesor.jsp</result>
+        </action>        
     </package>
     
 </struts>

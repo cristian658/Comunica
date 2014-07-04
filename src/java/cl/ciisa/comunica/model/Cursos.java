@@ -67,5 +67,17 @@ public class Cursos {
          }
          return false;
     }
+    public Curso getCursoById(int idCUrso){
+        Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query q = s.createQuery("select c from Curso c where c.idCurso = :id");
+        q.setParameter("id", idCUrso);
+        List<Curso> cursos = (List<Curso>)q.list();
+        s.close();
+        if(cursos.size()>0){
+            return     (Curso)cursos.get(0);
+        }
+        return null;
+ }
 
 }

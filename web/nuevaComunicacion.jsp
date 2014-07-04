@@ -18,10 +18,10 @@
         <title>Bienvenido <s:text name="%{#session.correo}"></s:text></title>
 
             <!-- Bootstrap core CSS -->
-            <link href="css/bootstrap.min.css" rel="stylesheet">
+            <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
             <!-- Custom styles for this template -->
-            <link href="css/cover.css" rel="stylesheet">
+            <link href="bootstrap/css/cover.css" rel="stylesheet">
 
             <!-- Just for debugging purposes. Don't actually copy this line! -->
             <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -109,6 +109,6 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
