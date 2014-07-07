@@ -96,16 +96,18 @@ public class LoginAction extends ActionSupport  {
         session = ActionContext.getContext().getSession();
         session.remove("id");
         session.remove("correo");
-        session.remove("typeUser");
         session.remove("context");
+        String ret;
         switch(session.get("typeUser").toString()){
             case "Administrador":
-                return "ADMIN";
+                ret = "ADMIN";
             case "Profesor":
-                return "Profesor";
+                ret = "Profesor";
             default:
-                return "Apoderado";               
+                ret = "Apoderado";               
         }
+        session.remove("typeUser");
+        return ret;
     }
 
 }
