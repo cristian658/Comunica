@@ -3,6 +3,7 @@ package cl.ciisa.comunica.model;
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.entity.Profesor;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.SendEmail;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -38,6 +39,7 @@ public class Profesores {
         } catch (HibernateException ex) {
             tx.rollback();
         } finally{
+            sendEmail(nombre_profesor, apellido_profesor, mail, pass);
             session.close();
         }
     }
@@ -61,5 +63,23 @@ public class Profesores {
         }
         return false;
  }
+      public void sendEmail(String nombre, String apellido, String mail, String pass){
+          
+          String body = "Hola "+nombre +" "+apellido+ "\n"+
+                      " \n" +
+                      "Detalles de tu cuenta\n" +
+                      " \n" +
+                      "Email: "+mail+"\n" +
+                      "Contraseña: "+pass+"\n" +
+                      " \n" +
+                      "Consejos de Seguridad:\n" +
+                      "\n" +
+                      "Mantén los datos de tu cuenta en lugar seguro.\n" +
+                      "No des los detalles de tu cuenta a nadie.\n" +
+                      "Si sospechas que alguien esta usando ilegalmente tu cuenta, avísanos inmediatamente.\n" +
+                      " comunicaeecc@gmail.com";
+          SendEmail email = new SendEmail("Cuenta Comunica", body, mail);
+          email.send();
+      }
 
 }

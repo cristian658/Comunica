@@ -110,14 +110,13 @@
                         <table class="table table-hover table-striped">                             
                             <thead>                                
                                 <tr>
-                                    <td><strong>Id</strong></td>
+                                    <td><strong>#</strong></td>
                                     <td><strong>Nombre</strong></td>
                                     <td><strong>Apellido Paterno</strong></td>
                                     <td><strong>Apellido Materno</strong></td>
                                     <td><strong>Email</strong></td>
-                                    <td><strong>Password</strong></td>
                                     <td><strong>Fecha Registro</strong></td>
-                                    <td><strong>Id curso</strong></td>
+                                    <td><strong>curso</strong></td>
                                 </tr>                                
                             </thead>                          
                             <tbody>
@@ -128,9 +127,8 @@
                                         <td><s:property value="ApellidoPatProfesor"/></td>
                                         <td><s:property value="ApellidoMatProfesor"/></td>
                                         <td><s:property value="emailProfesor"/></td>
-                                        <td><s:property value="passwordProfesor"/></td>
                                         <td><s:property value="FechaRegistroProfesor"/></td>
-                                        <td><s:property value="curso.idCurso"/></td>
+                                        <td><s:property value="curso.nombreCurso"/></td>
                                     </tr>  
                                 </s:iterator>                                 
                             </tbody>

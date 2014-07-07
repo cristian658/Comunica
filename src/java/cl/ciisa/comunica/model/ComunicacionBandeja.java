@@ -60,14 +60,25 @@ public class ComunicacionBandeja {
 
     public void addComunicacionDetalle(String asunto, String mensaje,
             Integer idAlumno, Profesor profesor, Integer idEmisor) {
-        getApoderadoByAlumno(idAlumno);
-        Comunicacion c = this.addComunicacion(this.apoderado, profesor);
+        Comunicacion c = null;
+        if(idAlumno != null){
+            getApoderadoByAlumno(idAlumno);
+            c = this.addComunicacion(this.apoderado, profesor);
+        }else{
+            c = this.addComunicacion(null, profesor);
+        }
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         if (c != null) {
             try {
-                Detallecomunicacion dc = new Detallecomunicacion(c, asunto, mensaje,
+                Detallecomunicacion dc = null;
+                if(idAlumno != null){
+                dc = new Detallecomunicacion(c, asunto, mensaje,
                         new Date(), idEmisor, this.apoderado.getIdApoderado(), FALSE);
+                }else{
+                    dc = new Detallecomunicacion(c, asunto, mensaje,
+                        new Date(), idEmisor, null, FALSE);
+                }
                 s.save(dc);
                 t.commit();
             } catch (HibernateException ex) {
