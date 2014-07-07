@@ -2,8 +2,10 @@ package cl.ciisa.comunica.controller.admin;
 
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.model.Cursos;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,12 +18,17 @@ public class CursoAction extends ActionSupport {
     public String nombre;
 
     public String execute() {
-        if (nombre != null) {
-            System.out.println(nombre);
-            cursos.addCurso(nombre);
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        if(session != null && !session.isEmpty() && session.get("typeUser").equals("Administrador")){
+            if (nombre != null) {
+                System.out.println(nombre);
+                cursos.addCurso(nombre);
+            }
+            cursosList = cursos.getCursos();
+            return SUCCESS;
+        }else{
+            return ERROR;
         }
-        cursosList = cursos.getCursos();
-        return SUCCESS;
     }
 
     public void validate() {

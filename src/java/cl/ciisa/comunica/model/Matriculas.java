@@ -4,6 +4,7 @@ import cl.ciisa.comunica.entity.Alumno;
 import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.SendEmail;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -67,6 +68,9 @@ public class Matriculas {
             t.rollback();
 
         } finally {
+            sendEmail(nombre, ap_pat, email, passw, 
+                    this.alumno.getNombreAlumno(), this.alumno.getApellidoPatAlumno()
+            );
             s.close();
         }
     }
@@ -111,15 +115,34 @@ public class Matriculas {
     public Boolean validEmailApoderado(String email) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
-        System.out.print("email3: " + email);
         Query q = s.createQuery("Select a from Apoderado a where a.emailApoderado = :email");
         q.setParameter("email", email);
         List c = q.list();
-        System.out.print("tamaño: " + c.size());
         if (c.size() > 0) {
             return true;
         }
         return false;
     }
+    
+    public void sendEmail(String nombre, String apellido, String mail, String pass, String nombre_alumno, String ap_alumno){
+          
+          String body = "Hola "+nombre +" "+apellido+ "\n"+
+                      " \n" +
+                      "Apoderado de: "+ nombre_alumno+" "+ap_alumno+"\n"+
+                      " \n" +
+                      "Detalles de tu cuenta\n" +
+                      " \n" +                      
+                      "Email: "+mail+"\n" +
+                      "Contraseña: "+pass+"\n" +
+                      " \n" +
+                      "Consejos de Seguridad:\n" +
+                      "\n" +
+                      "Mantén los datos de tu cuenta en lugar seguro.\n" +
+                      "No des los detalles de tu cuenta a nadie.\n" +
+                      "Si sospechas que alguien esta usando ilegalmente tu cuenta, avísanos inmediatamente.\n" +
+                      " comunicaeecc@gmail.com";
+          SendEmail email = new SendEmail("Cuenta Comunica", body, mail);
+          email.send();
+      }
 
 }

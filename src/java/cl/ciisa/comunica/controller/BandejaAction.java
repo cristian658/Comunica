@@ -18,7 +18,8 @@ public class BandejaAction extends ActionSupport {
     public List<Comunicacion> comunicaciones;
     public String execute(){
         Map<String, Object> session = ActionContext.getContext().getSession();
-        if(session != null && !session.isEmpty()){
+        if(session != null && !session.isEmpty() && 
+           (session.get("typeUser").equals("Profesor") || session.get("typeUser").equals("Apoderado"))){
             this.user = new User((Integer)session.get("id"), (String)session.get("correo"), (String)session.get("typeUser"));
             Bandeja b = new Bandeja(this.user);
             comunicaciones = b.getComunicaciones();

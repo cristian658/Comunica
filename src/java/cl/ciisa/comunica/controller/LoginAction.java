@@ -34,12 +34,22 @@ public class LoginAction extends ActionSupport  {
         
         if (user != null) {
             typeUser = this.getUser().getType();
-            session = ActionContext.getContext().getSession();
-            session.put("id", this.getUser().getId());
-            session.put("correo", this.getUser().getEmail());
-            session.put("typeUser", this.getUser().getType());
-            session.put("context", new Date());
-            return SUCCESS;
+            if(typeUser.equals("Administrador"))
+            {
+                session = ActionContext.getContext().getSession();
+                session.put("id", this.getUser().getId());
+                session.put("correo", this.getUser().getEmail());
+                session.put("typeUser", this.getUser().getType());
+                session.put("context", new Date());
+                return "ADMIN";
+            }else{
+                session = ActionContext.getContext().getSession();
+                session.put("id", this.getUser().getId());
+                session.put("correo", this.getUser().getEmail());
+                session.put("typeUser", this.getUser().getType());
+                session.put("context", new Date());
+                return SUCCESS;
+            }
         }
         return ERROR;
     }
@@ -84,10 +94,18 @@ public class LoginAction extends ActionSupport  {
      */
     public String logout(){
         session = ActionContext.getContext().getSession();
+        session.remove("id");
         session.remove("correo");
         session.remove("typeUser");
         session.remove("context");
-        return SUCCESS;
+        switch(session.get("typeUser").toString()){
+            case "Administrador":
+                return "ADMIN";
+            case "Profesor":
+                return "Profesor";
+            default:
+                return "Apoderado";               
+        }
     }
 
 }

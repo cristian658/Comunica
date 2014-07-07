@@ -17,7 +17,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Mantenedor - Curso</title>
+    <title>Bienvenido <s:text name="%{#session.correo}"></s:text></title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -63,7 +63,7 @@
               
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Salir</a></li>
+              <li><a href="../logoutAction.action">Salir</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

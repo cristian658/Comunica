@@ -17,8 +17,8 @@ public class SendEmail {
     private String subject;
     private String body;
     private String to;
-    private String from = "";
-    private String pass = "";
+    private String from = "comunicaeecc@gmail.com";
+    private String pass = "passwordEECC";
 
     public SendEmail(String subject, String body, String to) {
         this.subject = subject;

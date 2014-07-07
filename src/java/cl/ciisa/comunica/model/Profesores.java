@@ -39,7 +39,7 @@ public class Profesores {
         } catch (HibernateException ex) {
             tx.rollback();
         } finally{
-            sendEmail(nombre_profesor, apellido_profesor, mail, pass);
+            sendEmail(nombre_profesor, apellido_profesor, mail, pass, c.getNombreCurso());
             session.close();
         }
     }
@@ -63,9 +63,11 @@ public class Profesores {
         }
         return false;
  }
-      public void sendEmail(String nombre, String apellido, String mail, String pass){
+      public void sendEmail(String nombre, String apellido, String mail, String pass, String curso){
           
           String body = "Hola "+nombre +" "+apellido+ "\n"+
+                      " \n" +
+                      "Dueño del curso: "+curso+"\n"+
                       " \n" +
                       "Detalles de tu cuenta\n" +
                       " \n" +
