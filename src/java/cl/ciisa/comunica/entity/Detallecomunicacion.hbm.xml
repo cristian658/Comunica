@@ -8,7 +8,7 @@
             <column name="Id_Detalle_Comunicacion" />
             <generator class="identity" />
         </id>
-        <many-to-one name="comunicacion" class="cl.ciisa.comunica.entity.Comunicacion" fetch="select">
+        <many-to-one name="comunicacion" class="cl.ciisa.comunica.entity.Comunicacion" lazy="false" fetch="select">
             <column name="comunicacion_Id_Comunicacion" not-null="true" />
         </many-to-one>
         <property name="asunto" type="string">

@@ -126,7 +126,7 @@
                                     <td><strong>Apellido Paterno</strong></td>
                                     <td><strong>Apellido Materno</strong></td>
                                     <td><strong>Fecha Registro</strong></td>
-                                    <td><strong>Id curso</strong></td>
+                                    <td><strong>Curso</strong></td>
                                 </tr>                                
                             </thead>                          
                             <tbody>
@@ -137,7 +137,7 @@
                                         <td><s:property value="ApellidoPatAlumno"/></td>
                                         <td><s:property value="ApellidoMatAlumno"/></td>
                                         <td><s:property value="FechaRegistroAlumno"/></td>
-                                        <td><s:property value="curso.idCurso"/></td>
+                                        <td><s:property value="curso.nombreCurso"/></td>
                                     </tr>  
                                 </s:iterator>                                 
                             </tbody>
@@ -149,19 +149,18 @@
                         
                             <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Profesores</strong></h3>
+                                <h3 class="panel-title"><strong>Apoderados</strong></h3>
                             </div>
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <td><strong>Id</strong></td>
+                                    <td><strong>#</strong></td>
                                     <td><strong>Nombre</strong></td>
                                     <td><strong>Apellido Paterno</strong></td>
                                     <td><strong>Apellido Materno</strong></td>
                                     <td><strong>Email</strong></td>
-                                    <td><strong>Password</strong></td>
                                     <td><strong>Fecha Registro</strong></td>
-                                    <td><strong>Id alumno</strong></td>
+                                    <td><strong>Alumno</strong></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,9 +171,8 @@
                                         <td><s:property value="apellidoPatApoderado"/></td>
                                         <td><s:property value="apellidoMatApoderado"/></td>
                                         <td><s:property value="emailApoderado"/></td>
-                                        <td><s:property value="passwordApoderado"/></td>
                                         <td><s:property value="fechaRegistroApoderado"/></td>
-                                        <td><s:property value="alumno.idAlumno"/></td>
+                                        <td><s:property value="alumno.nombreAlumno"/></td>
                                     </tr> 
                                 </s:iterator>                          
                             </tbody>
@@ -184,11 +182,6 @@
                 </div>
       </p>
 
-      <!--hr>
-
-      <footer>
-        <p>&copy; EECC 2014</p>
-      </footer-->
       
       <hr>
         <footer>

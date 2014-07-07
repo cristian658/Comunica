@@ -39,8 +39,10 @@ public class nuevaComunicacionAction extends ActionSupport {
                 if(idProfesor != null){
                     profesor = comunBandeja.getProfesor(idProfesor);
                     alumnos = comunBandeja.getAlumnos(profesor.getCurso());
-                    if(idAlumno != null){
+                    if(idAlumno != null && asunto != null && mensaje != null){
                        comunBandeja.addComunicacionDetalle(asunto, mensaje, idAlumno, profesor, idProfesor);
+                    }else if(asunto != null && mensaje != null){
+                        comunBandeja.addComunicacionDetalle(asunto, mensaje, null, profesor, idProfesor);
                     }
                 }
             }

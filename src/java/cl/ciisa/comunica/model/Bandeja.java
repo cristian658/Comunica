@@ -1,5 +1,7 @@
 package cl.ciisa.comunica.model;
 
+import cl.ciisa.comunica.entity.Alumno;
+import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Comunicacion;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
 import java.util.List;
@@ -19,19 +21,27 @@ public class Bandeja {
         this.user = user;
     }
     public List<Comunicacion> getComunicaciones(){
-        Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
         String query = "";
+        Apoderado a = null;
+        Alumno al = null;
         switch(user.getType()){
             case "Profesor":
                 query = "Select c from Comunicacion c where c.profesor.idProfesor = :id";
                 break;
             case "Apoderado":
-                query = "Select c from Comunicacion c where c.apoderado.idApoderado = :id";
+                Matriculas m = new Matriculas();
+                a = m.getApoderadoById(user.getId());
+                query = "Select c from Comunicacion c where "
+                        + "(c.apoderado.idApoderado = :id or c.apoderado.idApoderado = null)"
+                        + " and c.profesor.curso.idCurso = :idCurso";
                 break;
         }
+        Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
         Query q = session.createQuery(query);
         q.setParameter("id", user.getId());
+        if(user.getType().equals("Apoderado"))
+            q.setParameter("idCurso", a.getAlumno().getCurso().getIdCurso());
         comunicaciones = (List<Comunicacion>)q.list();
         return comunicaciones;
     }

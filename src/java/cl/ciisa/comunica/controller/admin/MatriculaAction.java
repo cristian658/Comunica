@@ -1,7 +1,5 @@
 package cl.ciisa.comunica.controller.admin;
 
-
-
 import cl.ciisa.comunica.entity.Alumno;
 import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Curso;
@@ -17,7 +15,6 @@ import org.apache.commons.lang3.RandomStringUtils;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Esteban
@@ -33,36 +30,33 @@ public class MatriculaAction extends ActionSupport {
     public String Ap_Materno_Alumno;
     public int Id_Curso;
 
-   
     public Matriculas matriculas = new Matriculas();
     public Cursos cursos = new Cursos();
-    
+
     public List<Curso> cursosList;
     public List<Alumno> alumnosList;
     public List<Apoderado> apoderadosList;
-    
-    
+
     @Override
     public String execute() {
-        
-        
-        if (this.Nombre_Apoderado != null) {    
+
+        if (this.Nombre_Apoderado != null) {
             String code = RandomStringUtils.randomAlphanumeric(6);
-            this.matriculas.addAlumno(this.getNombre_Alumno()    , 
-                                      this.getAp_Paterno_Alumno(), 
-                                      this.getAp_Materno_Alumno(),
-                                      this.getId_Curso()); 
-            
+            this.matriculas.addAlumno(this.getNombre_Alumno(),
+                    this.getAp_Paterno_Alumno(),
+                    this.getAp_Materno_Alumno(),
+                    this.getId_Curso());
+
             /*List<Alumno> a = this.matriculas.getAlumnoLastId();
-            for(Alumno al: a ){                        
-            Integer.parseInt(al.getIdAlumno().toString()));
-            }*/
-            this.matriculas.addApoderado(this.getNombre_Apoderado(), 
-                                         this.getAp_Paterno_Apoderado(), 
-                                         this.getAp_Materno_Apoderado(), 
-                                         this.getEmail_Apoderado(),
-                                         code.toLowerCase());                                        
-            
+             for(Alumno al: a ){                        
+             Integer.parseInt(al.getIdAlumno().toString()));
+             }*/
+            this.matriculas.addApoderado(this.getNombre_Apoderado(),
+                    this.getAp_Paterno_Apoderado(),
+                    this.getAp_Materno_Apoderado(),
+                    this.getEmail_Apoderado(),
+                    code.toLowerCase());
+
             this.setNombre_Alumno("");
             this.setAp_Paterno_Alumno("");
             this.setAp_Materno_Alumno("");
@@ -71,31 +65,29 @@ public class MatriculaAction extends ActionSupport {
             this.setAp_Materno_Apoderado("");
             this.setEmail_Apoderado("");
             this.setId_Curso(0);
-        }        
+        }
         this.cursosList = this.cursos.getCursos();
-        this.alumnosList= this.matriculas.getAlumnos();
+        this.alumnosList = this.matriculas.getAlumnos();
         this.apoderadosList = this.matriculas.getApoderados();
+        
         return SUCCESS;
     }
-    
 
-     public void validate() {
+    public void validate() {
         this.cursosList = this.cursos.getCursos();
-        this.alumnosList= this.matriculas.getAlumnos();
+        this.alumnosList = this.matriculas.getAlumnos();
         this.apoderadosList = this.matriculas.getApoderados();
         if (this.getEmail_Apoderado() != null) {
-            if (this.matriculas.validEmailApoderado(this.getEmail_Apoderado())==true) {
-                addActionError("Ya existe '"+this.getEmail_Apoderado()+"'");
-            }       
+            if (this.matriculas.validEmailApoderado(this.getEmail_Apoderado()) == true) {
+                addActionError("Ya existe '" + this.getEmail_Apoderado() + "'");
+            }
         }
-        if(this.cursosList.size()<=0){
-                addActionError("Se requiere agregar cursos antes de registrar matriculas");
-            }       
-        
+        if (this.cursosList.size() <= 0) {
+            addActionError("Se requiere agregar cursos antes de registrar matriculas");
+        }
+
     }
-     
-    
-    
+
     public String getNombre_Apoderado() {
         return Nombre_Apoderado;
     }
@@ -151,12 +143,13 @@ public class MatriculaAction extends ActionSupport {
     public void setAp_Materno_Alumno(String Ap_Materno_Alumno) {
         this.Ap_Materno_Alumno = Ap_Materno_Alumno;
     }
-     public int getId_Curso() {
+
+    public int getId_Curso() {
         return Id_Curso;
     }
 
     public void setId_Curso(int Id_Curso) {
         this.Id_Curso = Id_Curso;
     }
-    
+
 }
