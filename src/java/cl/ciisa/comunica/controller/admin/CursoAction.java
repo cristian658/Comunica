@@ -23,6 +23,7 @@ public class CursoAction extends ActionSupport {
             if (nombre != null) {
                 System.out.println(nombre);
                 cursos.addCurso(nombre);
+                addActionMessage("Curso Registrado Exitosamente!");
             }
             cursosList = cursos.getCursos();
             return SUCCESS;
@@ -35,7 +36,7 @@ public class CursoAction extends ActionSupport {
         cursosList = cursos.getCursos();
         if (nombre != null) {
             if (cursos.validCurso(nombre)) {
-                addActionError("Ya existe");
+                addActionError("Ya existe el curso '"+nombre+"'");
             }
         }
 

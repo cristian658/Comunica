@@ -31,7 +31,12 @@
             <result name="success">/nuevaComunicacion.jsp</result>
             <result name="error" type="redirectAction">LoginAction</result>
         </action>
-        
+        <action name="DetalleComunicacionAction" class="cl.ciisa.comunica.controller.DetalleComunicacionAction" method="execute">
+            <result name="input" >/detalleComunicacion.jsp</result>
+            <result name="success" >/detalleComunicacion.jsp</result>
+            <result name="BANDEJA" type="redirectAction">BandejaAction</result>
+            <result name="error" type="redirectAction">LoginAction</result>
+        </action>  
         <!-- Administrador -->
         <action name="CursosAction" class="cl.ciisa.comunica.controller.admin.CursoAction" method="execute">
             <result name="input">/admin/cursos.jsp</result>
@@ -48,7 +53,7 @@
             <result name="input">/admin/profesor.jsp</result>
             <result name="success">/admin/profesor.jsp</result>
             <result name="error" type="redirectAction">../LoginAction?typeUser=Administrador</result>
-        </action>        
+        </action>       
     </package>
     
 </struts>

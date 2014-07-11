@@ -68,6 +68,7 @@ public class MatriculaAction extends ActionSupport {
                 this.setAp_Materno_Apoderado("");
                 this.setEmail_Apoderado("");
                 this.setId_Curso(0);
+                addActionMessage("Matricula Registrada Exitosamente!");
             }
             this.cursosList = this.cursos.getCursos();
             this.alumnosList = this.matriculas.getAlumnos();
@@ -85,7 +86,7 @@ public class MatriculaAction extends ActionSupport {
         this.apoderadosList = this.matriculas.getApoderados();
         if (this.getEmail_Apoderado() != null) {
             if (this.matriculas.validEmailApoderado(this.getEmail_Apoderado()) == true) {
-                addActionError("Ya existe '" + this.getEmail_Apoderado() + "'");
+                addActionError("Ya existe el apoderado '" + this.getEmail_Apoderado() + "'");
             }
         }
         if (this.cursosList.size() <= 0) {

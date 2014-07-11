@@ -32,21 +32,39 @@ public class nuevaComunicacionAction extends ActionSupport {
 
     public String execute() {
         session = ActionContext.getContext().getSession();
+        String emailSession = (String) session.get("correo");
+        Integer idSession = (Integer) session.get("id");
+        String typeUserSession = (String) session.get("typeUser");
         comunBandeja = new ComunicacionBandeja();
-        if (this.option != null && session != null && !session.isEmpty() &&
-           (session.get("typeUser").equals("Profesor") || session.get("typeUser").equals("Apoderado"))) {
-            if (((String) session.get("typeUser")).equals("Profesor")) {
-                Integer idProfesor = (Integer) session.get("id");
-                if (idProfesor != null) {
-                    profesor = comunBandeja.getProfesor(idProfesor);
+        if (/*this.option != null &&*/ session != null && !session.isEmpty() &&
+           (typeUserSession.equals("Profesor") || typeUserSession.equals("Apoderado"))) {
+            if (typeUserSession.equals("Profesor")) {
+                if (idSession != null) {
+                    profesor = comunBandeja.getProfesor(idSession);
                     alumnos = comunBandeja.getAlumnos(profesor.getCurso());
                     if (idAlumno != null && asunto != null && mensaje != null) {
-                        comunBandeja.addComunicacionDetalle(asunto, mensaje, idAlumno, profesor, idProfesor);
+                        comunBandeja.addComunicacionDetalle(asunto, mensaje, idAlumno, profesor, emailSession);
+                        addActionMessage("Comunicacion Enviada Exitosamente!");
                         this.setIdAlumno(0);
                         this.setAsunto("");
                         this.setMensaje("");
                     } else if (asunto != null && mensaje != null) {
-                        comunBandeja.addComunicacionDetalle(asunto, mensaje, null, profesor, idProfesor);
+                        comunBandeja.addComunicacionDetalle(asunto, mensaje, null, profesor, emailSession);
+                        addActionMessage("Comunicacion Enviada Exitosamente!");
+                        this.setAsunto("");
+                        this.setMensaje("");
+                    }
+                }
+            }else{
+                if(idSession != null)
+                {
+                    apoderado = comunBandeja.getApoderado(idSession);
+                    profesor = comunBandeja.getProfesorByCurso(apoderado.getAlumno().getCurso().getIdCurso());
+                    
+                    if(asunto != null && mensaje != null)
+                    {
+                        comunBandeja.addComunicacionDetalle2(asunto, mensaje, profesor,apoderado, emailSession);
+                        addActionMessage("Comunicacion Enviada Exitosamente!");
                         this.setAsunto("");
                         this.setMensaje("");
                     }

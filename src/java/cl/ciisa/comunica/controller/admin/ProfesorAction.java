@@ -45,6 +45,7 @@ public class ProfesorAction extends ActionSupport {
                 this.setApellido_mat_profesor("");
                 this.setEmail_profesor("");
                 this.setId_Curso(0);
+                addActionMessage("Profesor Registrado Exitosamente!");
             }
             this.cursosList = this.cursos.getCursos();
             this.profesoresList=this.p.getProfesores();
@@ -59,7 +60,7 @@ public class ProfesorAction extends ActionSupport {
         this.profesoresList=this.p.getProfesores();
         if (this.getEmail_profesor() != null) {
             if (this.p.validEmailProfesor(this.getEmail_profesor())==true) {
-                addActionError("Ya existe '"+this.getEmail_profesor()+"'");
+                addActionError("Ya existe el profesor '"+this.getEmail_profesor()+"'");
             }       
         }
         if(this.cursosList.size()<=0){

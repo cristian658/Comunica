@@ -57,6 +57,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <s:if test="%{#session.typeUser == 'Profesor'}">
               <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Enviar Comunicación <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -64,6 +65,10 @@
                         <li><s:a href="%{urlTag}?option=Apoderado">Apoderado</s:a></li>
                     </ul>
               </li>
+              </s:if>
+              <s:if test="%{#session.typeUser == 'Apoderado'}">
+                  <li ><s:a href="%{urlTag}">Nueva Comunicaci&oacute;n</s:a></li>
+              </s:if>
               
               
             </ul>
@@ -100,14 +105,13 @@
                             <tbody>
                                 <s:iterator value="comunicaciones" > 
                                     <tr>
-                                        <!--td><a href="#"><span class="glyphicon glyphicon-folder-close"></span></a></td-->
-                                        <td><s:property value="profesor.nombreProfesor"/></td>
-                                        <s:iterator value="detallecomunicacions" begin="0" end="0" > 
+
+                                            <td><s:property value="emisor"/>(n)</td>
                                             <td><s:property value="asunto"/></td> 
-                                            <td><s:date name="fechaRegistroComunicacion" format="dd/MM/yyyy hh:mm"/></td>
-                                            <td><s:property value="estado"/></td>
-                                            <td><a href="#"><img src="imagenes/lupa.png" width="25" height="25" title="Ver"/></a></td>
-                                        </s:iterator> 
+                                            <td><s:date name="fechaRegistroComunicacion" format="dd/MM/yyyy HH:mm:ss"/></td>
+                                            <td><s:property value="estado"/></td>               
+                                            <td><s:a href="DetalleComunicacionAction.action?idComunicacion=%{comunicacion.idComunicacion}"><img src="imagenes/lupa.png" width="25" height="25" title="Ver"/></s:a></td>
+
                                     </tr>  
                                 </s:iterator>                       
                             </tbody>

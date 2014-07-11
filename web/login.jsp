@@ -60,7 +60,7 @@
                     </s:form> 
                     <div class="mastfoot">
                         <div class="inner">
-                            <p>Grupo EECC</p>
+                            <p>&copy; EECC 2014</p>
                         </div>
                     </div>
                 </div> <!-- /container -->

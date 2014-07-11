@@ -56,13 +56,18 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <s:if test="%{#session.typeUser == 'Profesor'}">
               <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Enviar Comunicación <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><s:a href="%{urlTag}?option=curso">Curso</s:a></li>
-                        <li><s:a href="%{urlTag}?option=Apoderado">Apoderado</s:a></li>
-                    </ul>
+                        <li><s:a href="NuevaComunicacionAction.action?option=curso">Curso</s:a></li>
+                        <li><s:a href="NuevaComunicacionAction.action?option=Apoderado">Apoderado</s:a></li>
+                    </ul> 
               </li>
+              </s:if>
+              <s:if test="%{#session.typeUser == 'Apoderado'}">
+                  <li class="active"><a href="NuevaComunicacionAction.action">Nueva Comunicaci&oacute;n</a></li>
+              </s:if>
               
               
             </ul>
@@ -77,6 +82,12 @@
       <div class="well">
           <h2>Nueva Comunicaci&oacute;n</h2>      
       </div>
+        <s:if test="hasActionMessages()">
+            <div class="alert alert-success alert-dismissable" role="alert" style="width:30%">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <s:actionmessage/>
+            </div>
+        </s:if> 
       <p>
            <div class="row">
                

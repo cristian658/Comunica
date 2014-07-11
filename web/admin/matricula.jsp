@@ -69,12 +69,6 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-            <s:if test="hasActionErrors()">
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <s:actionerror/>
-                </div>
-            </s:if>
       <!-- Main component for a primary marketing message or call to action -->
       <div class="well">
         <h2>Matricula</h2>
@@ -111,6 +105,18 @@
       </p>
       
       </div>
+                <s:if test="hasActionMessages()">
+                    <div class="alert alert-success alert-dismissable" role="alert" style="width:30%">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <s:actionmessage/>
+                    </div>
+                </s:if> 
+                <s:if test="hasActionErrors()">
+                    <div class="alert alert-danger alert-dismissable" role="alert" style="width:30%">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <s:actionerror/>
+                    </div>
+                </s:if>      
       <p>
            <div class="row">
                     <div class="col-xs-5">

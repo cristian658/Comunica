@@ -101,10 +101,13 @@ public class LoginAction extends ActionSupport  {
         switch(session.get("typeUser").toString()){
             case "Administrador":
                 ret = "ADMIN";
+                break;
             case "Profesor":
                 ret = "Profesor";
+                break;
             default:
-                ret = "Apoderado";               
+                ret = "Apoderado";     
+                break;
         }
         session.remove("typeUser");
         return ret;

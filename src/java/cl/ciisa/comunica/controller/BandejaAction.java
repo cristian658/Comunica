@@ -1,6 +1,7 @@
 package cl.ciisa.comunica.controller;
 
 import cl.ciisa.comunica.entity.Comunicacion;
+import cl.ciisa.comunica.entity.Detallecomunicacion;
 import cl.ciisa.comunica.model.Bandeja;
 import cl.ciisa.comunica.model.User;
 import com.opensymphony.xwork2.ActionContext;
@@ -15,7 +16,8 @@ import java.util.Map;
  */
 public class BandejaAction extends ActionSupport {
     private User user;
-    public List<Comunicacion> comunicaciones;
+    //public List<Comunicacion> comunicaciones;
+    public List<Detallecomunicacion> comunicaciones;
     public String execute(){
         Map<String, Object> session = ActionContext.getContext().getSession();
         if(session != null && !session.isEmpty() && 
