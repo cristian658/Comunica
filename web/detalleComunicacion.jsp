@@ -85,7 +85,7 @@
                     <div class="col-sm-7">
                         <div class="list-group">
                             <s:iterator value="detalleComunicacionList"> 
-                                <a href="#" class="list-group-item">
+                                <a class="list-group-item">
                                     <h4 class="list-group-item-heading">
                                         <s:property value="emisor"/>
                                     </h4>
