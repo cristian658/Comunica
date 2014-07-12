@@ -92,7 +92,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title"><strong>Comunicaciones</strong></h3>
                             </div>
-                        <table class="table table-hover table-striped">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <td><strong>Remitente</strong></td>
@@ -104,7 +104,8 @@
                             </thead>
                             <tbody>
                                 <s:iterator value="comunicaciones" > 
-                                    <tr>
+                                    <s:if test="%{#session.correo == emisor}">
+                                    <tr class="success">
 
                                             <td><s:property value="emisor"/>(n)</td>
                                             <td><s:property value="asunto"/></td> 
@@ -113,6 +114,18 @@
                                             <td><s:a href="DetalleComunicacionAction.action?idComunicacion=%{comunicacion.idComunicacion}"><img src="imagenes/lupa.png" width="25" height="25" title="Ver"/></s:a></td>
 
                                     </tr>  
+                                    </s:if>
+                                    <s:else>
+                                    <tr class="active">
+
+                                            <td><s:property value="emisor"/>(n)</td>
+                                            <td><s:property value="asunto"/></td> 
+                                            <td><s:date name="fechaRegistroComunicacion" format="dd/MM/yyyy HH:mm:ss"/></td>
+                                            <td><s:property value="estado"/></td>               
+                                            <td><s:a href="DetalleComunicacionAction.action?idComunicacion=%{comunicacion.idComunicacion}"><img src="imagenes/lupa.png" width="25" height="25" title="Ver"/></s:a></td>
+
+                                    </tr> 
+                                    </s:else>
                                 </s:iterator>                       
                             </tbody>
                         </table>                            
