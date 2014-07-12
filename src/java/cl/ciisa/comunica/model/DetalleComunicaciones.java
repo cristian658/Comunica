@@ -21,7 +21,7 @@ import org.hibernate.Transaction;
  */
 public class DetalleComunicaciones {
 
-    public List<Detallecomunicacion> getDetalleComunicacion(Integer idComunicacion) {
+    public List<Detallecomunicacion> getDetalleComunicacionByIdComunicacionPrincipal(Integer idComunicacion) {
         Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Query q = session.createQuery("Select dc from Detallecomunicacion dc where dc.comunicacion.idComunicacion = :id"
@@ -32,18 +32,18 @@ public class DetalleComunicaciones {
         return detalleComunicaciones;
     }
 
-    public void addRespuesta(String mensaje, String destino, String correoEmisor, Integer idComunicacion,
-            Detallecomunicacion dcPrimerResgistro) {
+    public void addRespuesta(String mensaje, String destinatario, String correoSession, Integer idComunicacion,
+            Detallecomunicacion dcPrimerRegistroDeLaLista) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         try {
-            if (correoEmisor.equals(dcPrimerResgistro.getDestinatario())) {
-                destino = dcPrimerResgistro.getEmisor();
+            if (correoSession.equals(dcPrimerRegistroDeLaLista.getDestinatario())) {
+                destinatario = dcPrimerRegistroDeLaLista.getEmisor();
             } else {
-                destino = dcPrimerResgistro.getDestinatario();
+                destinatario = dcPrimerRegistroDeLaLista.getDestinatario();
             }
-            Detallecomunicacion dc = new Detallecomunicacion(dcPrimerResgistro.getComunicacion(), dcPrimerResgistro.getAsunto(), mensaje,
-                    new Date(), correoEmisor, destino, FALSE);
+            Detallecomunicacion dc = new Detallecomunicacion(dcPrimerRegistroDeLaLista.getComunicacion(), dcPrimerRegistroDeLaLista.getAsunto(), mensaje,
+                    new Date(), correoSession, destinatario, FALSE);
             s.save(dc);
             t.commit();
         } catch (HibernateException ex) {

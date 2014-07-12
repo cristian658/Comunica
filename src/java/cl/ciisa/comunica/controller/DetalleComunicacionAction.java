@@ -19,11 +19,11 @@ import java.util.Map;
 public class DetalleComunicacionAction extends ActionSupport {
 
     Integer idComunicacion;
-    String mensajeForm;
+    String mensajeDeForm;
 
     DetalleComunicaciones detalleComunicaciones = new DetalleComunicaciones();
-    public List<Detallecomunicacion> detalleComunicacionList;
-    public Detallecomunicacion dcPrimerResgistro;
+    public List<Detallecomunicacion> dcByIdComunicacionPrincipalList;
+    public Detallecomunicacion dcPrimerRegistroDeLaLista;
 
     public String execute() {
         Map<String, Object> session = ActionContext.getContext().getSession();
@@ -31,15 +31,15 @@ public class DetalleComunicacionAction extends ActionSupport {
                 && (session.get("typeUser").toString().equals("Profesor") || session.get("typeUser").toString().equals("Apoderado"))) {
 
             if (idComunicacion != null) {
-                this.dcPrimerResgistro = this.detalleComunicaciones.getDetalleComunicacion(idComunicacion).get(0);            
+                this.dcPrimerRegistroDeLaLista = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion).get(0);            
 
-                if (mensajeForm != null) {
-                    this.detalleComunicaciones.addRespuesta(mensajeForm, null, session.get("correo").toString(), idComunicacion, dcPrimerResgistro);
-                    this.setMensajeForm("");
+                if (mensajeDeForm != null) {
+                    this.detalleComunicaciones.addRespuesta(mensajeDeForm, null, session.get("correo").toString(), idComunicacion, dcPrimerRegistroDeLaLista);
+                    this.setMensajeDeForm("");
                     this.setIdComunicacion(0);
                     return "BANDEJA";
                 }
-                this.detalleComunicacionList = this.detalleComunicaciones.getDetalleComunicacion(idComunicacion);
+                this.dcByIdComunicacionPrincipalList = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion);
             }
             return SUCCESS;
         }
@@ -54,12 +54,12 @@ public class DetalleComunicacionAction extends ActionSupport {
         this.idComunicacion = idComunicacion;
     }
 
-    public String getMensajeForm() {
-        return mensajeForm;
+    public String getMensajeDeForm() {
+        return mensajeDeForm;
     }
 
-    public void setMensajeForm(String mensajeForm) {
-        this.mensajeForm = mensajeForm;
+    public void setMensajeDeForm(String mensajeDeForm) {
+        this.mensajeDeForm = mensajeDeForm;
     }
 
 }

@@ -46,11 +46,11 @@ public class ComunicacionBandeja {
 
     }
 
-    public void addComunicacionDetalle2(String asunto, String mensaje,
+    public void addDetalleComunicacionDeApoderadoAProfesor(String asunto, String mensaje,
             Profesor profesor, Apoderado apoderado, String correoEmisor) {
 
         Comunicacion c = null;
-        c = this.addComunicacion(apoderado, profesor);
+        c = this.addComunicacionVinculo(apoderado, profesor);
 
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
@@ -103,14 +103,14 @@ public class ComunicacionBandeja {
         return this.apoderado;
     }
 
-    public void addComunicacionDetalle(String asunto, String mensaje,
+    public void addDetalleComunicacionDeProfesorAApoderado(String asunto, String mensaje,
             Integer idAlumno, Profesor profesor, String emailEmisor) {
         Comunicacion c = null;
         if (idAlumno != null) {
             getApoderadoByAlumno(idAlumno);
-            c = this.addComunicacion(this.apoderado, profesor);
+            c = this.addComunicacionVinculo(this.apoderado, profesor);
         } else {
-            c = this.addComunicacion(null, profesor);
+            c = this.addComunicacionVinculo(null, profesor);
         }
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
@@ -136,7 +136,7 @@ public class ComunicacionBandeja {
 
     }
 
-    public Comunicacion addComunicacion(Apoderado apoderado, Profesor profesor) {
+    public Comunicacion addComunicacionVinculo(Apoderado apoderado, Profesor profesor) {
         Comunicacion c = new Comunicacion();
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();

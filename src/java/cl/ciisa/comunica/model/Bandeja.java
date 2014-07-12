@@ -20,7 +20,7 @@ public class Bandeja {
     public Bandeja(User user){
         this.user = user;
     }
-    public List<Detallecomunicacion> getComunicaciones(){
+    public List<Detallecomunicacion> getComunicacionesPrincipales(){
         String query = "";
         Apoderado a = null;
         Alumno al = null;

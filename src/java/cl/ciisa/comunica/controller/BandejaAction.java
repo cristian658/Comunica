@@ -24,7 +24,7 @@ public class BandejaAction extends ActionSupport {
            (session.get("typeUser").equals("Profesor") || session.get("typeUser").equals("Apoderado"))){
             this.user = new User((Integer)session.get("id"), (String)session.get("correo"), (String)session.get("typeUser"));
             Bandeja b = new Bandeja(this.user);
-            comunicaciones = b.getComunicaciones();
+            comunicaciones = b.getComunicacionesPrincipales();
             
             return SUCCESS;  
         }  

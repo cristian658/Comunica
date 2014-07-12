@@ -28,7 +28,7 @@ public class nuevaComunicacionAction extends ActionSupport {
     public Apoderado apoderado;
     public Integer idAlumno;
     Map<String, Object> session;
-    private ComunicacionBandeja comunBandeja;
+    public ComunicacionBandeja comunBandeja;
 
     public String execute() {
         session = ActionContext.getContext().getSession();
@@ -43,13 +43,13 @@ public class nuevaComunicacionAction extends ActionSupport {
                     profesor = comunBandeja.getProfesor(idSession);
                     alumnos = comunBandeja.getAlumnos(profesor.getCurso());
                     if (idAlumno != null && asunto != null && mensaje != null) {
-                        comunBandeja.addComunicacionDetalle(asunto, mensaje, idAlumno, profesor, emailSession);
+                        comunBandeja.addDetalleComunicacionDeProfesorAApoderado(asunto, mensaje, idAlumno, profesor, emailSession);
                         addActionMessage("Comunicacion Enviada Exitosamente!");
                         this.setIdAlumno(0);
                         this.setAsunto("");
                         this.setMensaje("");
                     } else if (asunto != null && mensaje != null) {
-                        comunBandeja.addComunicacionDetalle(asunto, mensaje, null, profesor, emailSession);
+                        comunBandeja.addDetalleComunicacionDeProfesorAApoderado(asunto, mensaje, null, profesor, emailSession);
                         addActionMessage("Comunicacion Enviada Exitosamente!");
                         this.setAsunto("");
                         this.setMensaje("");
@@ -63,7 +63,7 @@ public class nuevaComunicacionAction extends ActionSupport {
                     
                     if(asunto != null && mensaje != null)
                     {
-                        comunBandeja.addComunicacionDetalle2(asunto, mensaje, profesor,apoderado, emailSession);
+                        comunBandeja.addDetalleComunicacionDeApoderadoAProfesor(asunto, mensaje, profesor,apoderado, emailSession);
                         addActionMessage("Comunicacion Enviada Exitosamente!");
                         this.setAsunto("");
                         this.setMensaje("");

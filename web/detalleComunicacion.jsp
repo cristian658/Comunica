@@ -77,14 +77,14 @@
             </div>
 
             <!-- Main component for a primary marketing message or call to action -->
-            <s:iterator value="dcPrimerResgistro"> 
+            <s:iterator value="dcPrimerRegistroDeLaLista"> 
                 <div class="well">
                     <h2>Detalle '<s:property value="asunto"/>'</h2>      
                 </div>
                 <div class="row">                                  
                     <div class="col-sm-7">
                         <div class="list-group">
-                            <s:iterator value="detalleComunicacionList"> 
+                            <s:iterator value="dcByIdComunicacionPrincipalList"> 
                                 <a class="list-group-item">
                                     <h4 class="list-group-item-heading">
                                         <s:property value="emisor"/>
@@ -97,9 +97,9 @@
                                 </a>
                                 <br> 
                             </s:iterator> <!--iterator 1--> 
-                            <s:if test="%{dcPrimerResgistro.comunicacion.apoderado != null}"> 
+                            <s:if test="%{dcPrimerRegistroDeLaLista.comunicacion.apoderado != null}"> 
                                 <s:form cssClass="form-horizontal" action="DetalleComunicacionAction.action"> 
-                                    <s:textarea cssClass="form-control" rows="3" required="" placeholder="Escriba aqui su respuesta..." name="mensajeForm"/>
+                                    <s:textarea cssClass="form-control" rows="3" required="" placeholder="Escriba aqui su respuesta..." name="mensajeDeForm"/>
                                     <s:hidden id="idComunicacion" value="%{idComunicacion}" name="idComunicacion"></s:hidden>                     
                                         <br>
                                     <s:submit type="submit" cssClass="btn btn-primary" value="Responder"></s:submit>
