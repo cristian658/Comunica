@@ -5,8 +5,10 @@ import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.model.Cursos;
 import cl.ciisa.comunica.model.Matriculas;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
 
 
@@ -39,38 +41,43 @@ public class MatriculaAction extends ActionSupport {
 
     @Override
     public String execute() {
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        if(session != null && !session.isEmpty() && session.get("typeUser").equals("Administrador")){
+            if (this.Nombre_Apoderado != null) {
+                String code = RandomStringUtils.randomAlphanumeric(6);
+                this.matriculas.addAlumno(this.getNombre_Alumno(),
+                        this.getAp_Paterno_Alumno(),
+                        this.getAp_Materno_Alumno(),
+                        this.getId_Curso());
 
-        if (this.Nombre_Apoderado != null) {
-            String code = RandomStringUtils.randomAlphanumeric(6);
-            this.matriculas.addAlumno(this.getNombre_Alumno(),
-                    this.getAp_Paterno_Alumno(),
-                    this.getAp_Materno_Alumno(),
-                    this.getId_Curso());
+                /*List<Alumno> a = this.matriculas.getAlumnoLastId();
+                 for(Alumno al: a ){                        
+                 Integer.parseInt(al.getIdAlumno().toString()));
+                 }*/
+                this.matriculas.addApoderado(this.getNombre_Apoderado(),
+                        this.getAp_Paterno_Apoderado(),
+                        this.getAp_Materno_Apoderado(),
+                        this.getEmail_Apoderado(),
+                        code.toLowerCase());
 
-            /*List<Alumno> a = this.matriculas.getAlumnoLastId();
-             for(Alumno al: a ){                        
-             Integer.parseInt(al.getIdAlumno().toString()));
-             }*/
-            this.matriculas.addApoderado(this.getNombre_Apoderado(),
-                    this.getAp_Paterno_Apoderado(),
-                    this.getAp_Materno_Apoderado(),
-                    this.getEmail_Apoderado(),
-                    code.toLowerCase());
+                this.setNombre_Alumno("");
+                this.setAp_Paterno_Alumno("");
+                this.setAp_Materno_Alumno("");
+                this.setNombre_Apoderado("");
+                this.setAp_Paterno_Apoderado("");
+                this.setAp_Materno_Apoderado("");
+                this.setEmail_Apoderado("");
+                this.setId_Curso(0);
+                addActionMessage("Matricula Registrada Exitosamente!");
+            }
+            this.cursosList = this.cursos.getCursos();
+            this.alumnosList = this.matriculas.getAlumnos();
+            this.apoderadosList = this.matriculas.getApoderados();
 
-            this.setNombre_Alumno("");
-            this.setAp_Paterno_Alumno("");
-            this.setAp_Materno_Alumno("");
-            this.setNombre_Apoderado("");
-            this.setAp_Paterno_Apoderado("");
-            this.setAp_Materno_Apoderado("");
-            this.setEmail_Apoderado("");
-            this.setId_Curso(0);
+            return SUCCESS;
+        }else{
+            return ERROR;
         }
-        this.cursosList = this.cursos.getCursos();
-        this.alumnosList = this.matriculas.getAlumnos();
-        this.apoderadosList = this.matriculas.getApoderados();
-        
-        return SUCCESS;
     }
 
     public void validate() {
@@ -79,7 +86,7 @@ public class MatriculaAction extends ActionSupport {
         this.apoderadosList = this.matriculas.getApoderados();
         if (this.getEmail_Apoderado() != null) {
             if (this.matriculas.validEmailApoderado(this.getEmail_Apoderado()) == true) {
-                addActionError("Ya existe '" + this.getEmail_Apoderado() + "'");
+                addActionError("Ya existe el apoderado '" + this.getEmail_Apoderado() + "'");
             }
         }
         if (this.cursosList.size() <= 0) {

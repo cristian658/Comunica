@@ -25,6 +25,52 @@ public class ComunicacionBandeja {
     public Profesor profesor;
     public Apoderado apoderado;
 
+    public Apoderado getApoderado(Integer idApoderado) {
+        Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query q = s.createQuery("select ap from Apoderado ap where ap.idApoderado = :idApoderado");
+        q.setParameter("idApoderado", idApoderado);
+        this.apoderado = (Apoderado) q.uniqueResult();
+        s.close();
+        return this.apoderado;
+    }
+
+    public Profesor getProfesorByCurso(Integer idCurso) {
+        Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query q = s.createQuery("select p from Profesor p where p.curso.idCurso = :idCurso");
+        q.setParameter("idCurso", idCurso);
+        this.profesor = (Profesor) q.uniqueResult();
+        s.close();
+        return this.profesor;
+
+    }
+
+    public void addDetalleComunicacionDeApoderadoAProfesor(String asunto, String mensaje,
+            Profesor profesor, Apoderado apoderado, String correoEmisor) {
+
+        Comunicacion c = null;
+        c = this.addComunicacionVinculo(apoderado, profesor);
+
+        Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
+        Transaction t = s.beginTransaction();
+        if (c != null) {
+            try {
+                Detallecomunicacion dc = null;
+                dc = new Detallecomunicacion(c, asunto, mensaje,
+                        new Date(), correoEmisor, profesor.getEmailProfesor(), FALSE);
+                s.save(dc);
+                t.commit();
+            } catch (HibernateException ex) {
+                t.rollback();
+                ex.printStackTrace();
+            } finally {
+                s.close();
+            }
+        }
+
+    }
+
     public Profesor getProfesor(Integer idProfesor) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
@@ -35,10 +81,9 @@ public class ComunicacionBandeja {
         return this.profesor;
     }
 
-    public Curso getCursoByProfesor(Profesor profesor) {
-        return profesor.getCurso();
-    }
-
+    /*public Curso getCursoByProfesor(Profesor profesor) {
+     return profesor.getCurso();
+     }*/
     public List<Alumno> getAlumnos(Curso curso) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
@@ -58,26 +103,26 @@ public class ComunicacionBandeja {
         return this.apoderado;
     }
 
-    public void addComunicacionDetalle(String asunto, String mensaje,
-            Integer idAlumno, Profesor profesor, Integer idEmisor) {
+    public void addDetalleComunicacionDeProfesorAApoderado(String asunto, String mensaje,
+            Integer idAlumno, Profesor profesor, String emailEmisor) {
         Comunicacion c = null;
-        if(idAlumno != null){
+        if (idAlumno != null) {
             getApoderadoByAlumno(idAlumno);
-            c = this.addComunicacion(this.apoderado, profesor);
-        }else{
-            c = this.addComunicacion(null, profesor);
+            c = this.addComunicacionVinculo(this.apoderado, profesor);
+        } else {
+            c = this.addComunicacionVinculo(null, profesor);
         }
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         if (c != null) {
             try {
                 Detallecomunicacion dc = null;
-                if(idAlumno != null){
-                dc = new Detallecomunicacion(c, asunto, mensaje,
-                        new Date(), idEmisor, this.apoderado.getIdApoderado(), FALSE);
-                }else{
+                if (idAlumno != null) {
                     dc = new Detallecomunicacion(c, asunto, mensaje,
-                        new Date(), idEmisor, null, FALSE);
+                            new Date(), emailEmisor, this.apoderado.getEmailApoderado(), FALSE);
+                } else {
+                    dc = new Detallecomunicacion(c, asunto, mensaje,
+                            new Date(), emailEmisor, null, FALSE);
                 }
                 s.save(dc);
                 t.commit();
@@ -91,12 +136,12 @@ public class ComunicacionBandeja {
 
     }
 
-    public Comunicacion addComunicacion(Apoderado apoderado, Profesor profesor) {
+    public Comunicacion addComunicacionVinculo(Apoderado apoderado, Profesor profesor) {
         Comunicacion c = new Comunicacion();
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         try {
-            c.setApoderado(this.apoderado);
+            c.setApoderado(apoderado);
             c.setProfesor(profesor);
             s.save(c);
             t.commit();

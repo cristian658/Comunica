@@ -12,10 +12,13 @@
         <action name="LoginAction" class="cl.ciisa.comunica.controller.LoginAction" method="execute">
             <result name="input">/login.jsp</result>
             <result name="success" type="redirectAction">BandejaAction</result>
+            <result name="ADMIN" type="redirectAction">admin/CursosAction</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="logoutAction" class="cl.ciisa.comunica.controller.LoginAction" method="logout" >
-            <result name="success" type="redirect">LoginAction.action?typeUser=Profesor</result>
+            <result name="ADMIN" type="redirectAction">LoginAction.action?typeUser=Administrador</result>
+            <result name="Profesor" type="redirectAction">LoginAction.action?typeUser=Profesor</result>
+            <result name="Apoderado" type="redirectAction">LoginAction.action?typeUser=Apoderado</result>
         </action>
         <action name="BandejaAction" class="cl.ciisa.comunica.controller.BandejaAction" method="execute">
             <result name="input">/bandeja.jsp</result>
@@ -28,24 +31,29 @@
             <result name="success">/nuevaComunicacion.jsp</result>
             <result name="error" type="redirectAction">LoginAction</result>
         </action>
-        
+        <action name="DetalleComunicacionAction" class="cl.ciisa.comunica.controller.DetalleComunicacionAction" method="execute">
+            <result name="input" >/detalleComunicacion.jsp</result>
+            <result name="success" >/detalleComunicacion.jsp</result>
+            <result name="BANDEJA" type="redirectAction">BandejaAction</result>
+            <result name="error" type="redirectAction">LoginAction</result>
+        </action>  
         <!-- Administrador -->
         <action name="CursosAction" class="cl.ciisa.comunica.controller.admin.CursoAction" method="execute">
             <result name="input">/admin/cursos.jsp</result>
             <result name="success">/admin/cursos.jsp</result>
-            <result name="error">/admin/cursos.jsp</result>
+            <result name="error" type="redirectAction">../LoginAction?typeUser=Administrador</result>
         </action>
         
         <action name="MatriculaAction" class="cl.ciisa.comunica.controller.admin.MatriculaAction" method="execute">
             <result name="input">/admin/matricula.jsp</result>
             <result name="success">/admin/matricula.jsp</result>
-            <result name="error">/admin/matricula.jsp</result>
+            <result name="error" type="redirectAction">../LoginAction?typeUser=Administrador</result>
         </action>
         <action name="ProfesorAction" class="cl.ciisa.comunica.controller.admin.ProfesorAction" method="execute">
             <result name="input">/admin/profesor.jsp</result>
             <result name="success">/admin/profesor.jsp</result>
-            <result name="error">/admin/profesor.jsp</result>
-        </action>        
+            <result name="error" type="redirectAction">../LoginAction?typeUser=Administrador</result>
+        </action>       
     </package>
     
 </struts>

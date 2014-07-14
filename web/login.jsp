@@ -43,15 +43,14 @@
                             </ul>
                         </div>
                     </div>
+                    
                     <s:if test="hasActionErrors()">
                         <div class="alert alert-danger alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <s:actionerror/>
                         </div>
-
-
-
                     </s:if>
+                    
                     <h2 class="form-signin-heading">Bienvenido <s:text name="%{typeUser}"></s:text></h2>
                     <s:form cssClass="form-signin" role="form"  action="LoginAction">  
                         <s:textfield type="email" required="" cssClass="form-control" placeholder="Email" name="user.email"></s:textfield>  
@@ -61,7 +60,7 @@
                     </s:form> 
                     <div class="mastfoot">
                         <div class="inner">
-                            <p>Grupo EECC</p>
+                            <p>&copy; EECC 2014</p>
                         </div>
                     </div>
                 </div> <!-- /container -->

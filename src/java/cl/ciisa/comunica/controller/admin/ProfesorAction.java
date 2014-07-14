@@ -9,8 +9,10 @@ import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.entity.Profesor;
 import cl.ciisa.comunica.model.Cursos;
 import cl.ciisa.comunica.model.Profesores;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -33,18 +35,24 @@ public class ProfesorAction extends ActionSupport {
     Profesores p = new Profesores();
     public String execute() {
         
-        if(this.nombre_profesor != null){
-            String code = RandomStringUtils.randomAlphanumeric(6);     
-            p.agregarProfesor(nombre_profesor, apellido_pat_profesor, apellido_mat_profesor, email_profesor,code.toLowerCase(), id_Curso);
-            this.setNombre_profesor("");
-            this.setApellido_pat_profesor("");
-            this.setApellido_mat_profesor("");
-            this.setEmail_profesor("");
-            this.setId_Curso(0);
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        if(session != null && !session.isEmpty() && session.get("typeUser").equals("Administrador")){
+            if(this.nombre_profesor != null){
+                String code = RandomStringUtils.randomAlphanumeric(6);     
+                p.agregarProfesor(nombre_profesor, apellido_pat_profesor, apellido_mat_profesor, email_profesor,code.toLowerCase(), id_Curso);
+                this.setNombre_profesor("");
+                this.setApellido_pat_profesor("");
+                this.setApellido_mat_profesor("");
+                this.setEmail_profesor("");
+                this.setId_Curso(0);
+                addActionMessage("Profesor Registrado Exitosamente!");
+            }
+            this.cursosList = this.cursos.getCursos();
+            this.profesoresList=this.p.getProfesores();
+            return SUCCESS;
+        }else{
+            return ERROR;
         }
-        this.cursosList = this.cursos.getCursos();
-        this.profesoresList=this.p.getProfesores();
-        return SUCCESS;
     }
     
     public void validate() {
@@ -52,7 +60,7 @@ public class ProfesorAction extends ActionSupport {
         this.profesoresList=this.p.getProfesores();
         if (this.getEmail_profesor() != null) {
             if (this.p.validEmailProfesor(this.getEmail_profesor())==true) {
-                addActionError("Ya existe '"+this.getEmail_profesor()+"'");
+                addActionError("Ya existe el profesor '"+this.getEmail_profesor()+"'");
             }       
         }
         if(this.cursosList.size()<=0){

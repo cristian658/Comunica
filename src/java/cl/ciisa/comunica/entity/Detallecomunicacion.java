@@ -15,8 +15,8 @@ public class Detallecomunicacion  implements java.io.Serializable {
      private String asunto;
      private String mensaje;
      private Date fechaRegistroComunicacion;
-     private Integer emisor;
-     private Integer destinatario;
+     private String emisor;
+     private String destinatario;
      private Boolean estado;
 
     public Detallecomunicacion() {
@@ -26,7 +26,7 @@ public class Detallecomunicacion  implements java.io.Serializable {
     public Detallecomunicacion(Comunicacion comunicacion) {
         this.comunicacion = comunicacion;
     }
-    public Detallecomunicacion(Comunicacion comunicacion, String asunto, String mensaje, Date fechaRegistroComunicacion, Integer emisor, Integer destinatario, Boolean estado) {
+    public Detallecomunicacion(Comunicacion comunicacion, String asunto, String mensaje, Date fechaRegistroComunicacion, String emisor, String destinatario, Boolean estado) {
        this.comunicacion = comunicacion;
        this.asunto = asunto;
        this.mensaje = mensaje;
@@ -71,18 +71,18 @@ public class Detallecomunicacion  implements java.io.Serializable {
     public void setFechaRegistroComunicacion(Date fechaRegistroComunicacion) {
         this.fechaRegistroComunicacion = fechaRegistroComunicacion;
     }
-    public Integer getEmisor() {
+    public String getEmisor() {
         return this.emisor;
     }
     
-    public void setEmisor(Integer emisor) {
+    public void setEmisor(String emisor) {
         this.emisor = emisor;
     }
-    public Integer getDestinatario() {
+    public String getDestinatario() {
         return this.destinatario;
     }
     
-    public void setDestinatario(Integer destinatario) {
+    public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
     public Boolean getEstado() {
