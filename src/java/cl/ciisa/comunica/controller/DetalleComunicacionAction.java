@@ -36,8 +36,7 @@ public class DetalleComunicacionAction extends ActionSupport {
                 if (mensajeDeForm != null) {
                     this.detalleComunicaciones.addRespuesta(mensajeDeForm, null, session.get("correo").toString(), idComunicacion, dcPrimerRegistroDeLaLista);
                     this.setMensajeDeForm("");
-                    this.setIdComunicacion(0);
-                    return "BANDEJA";
+                    return "DETALLE";
                 }
                 this.dcByIdComunicacionPrincipalList = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion);
             }
