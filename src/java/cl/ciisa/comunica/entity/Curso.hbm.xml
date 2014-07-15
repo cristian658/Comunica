@@ -14,13 +14,13 @@
         <property name="fechaRegistroCurso" type="timestamp">
             <column name="FechaRegistroCurso" length="19" />
         </property>
-        <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
+        <set name="alumnos" table="alumno" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="curso_IdCurso" not-null="true" />
             </key>
             <one-to-many class="cl.ciisa.comunica.entity.Alumno" />
         </set>
-        <set name="profesors" table="profesor" inverse="true" lazy="true" fetch="select">
+        <set name="profesors" table="profesor" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="curso_Id_Curso" not-null="true" />
             </key>
