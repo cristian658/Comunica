@@ -8,7 +8,7 @@
             <column name="IdAlumno" />
             <generator class="identity" />
         </id>
-        <many-to-one name="curso" class="cl.ciisa.comunica.entity.Curso" fetch="select">
+        <many-to-one name="curso" class="cl.ciisa.comunica.entity.Curso" lazy="false" fetch="select">
             <column name="curso_IdCurso" not-null="true" />
         </many-to-one>
         <property name="nombreAlumno" type="string">
@@ -23,7 +23,7 @@
         <property name="fechaRegistroAlumno" type="timestamp">
             <column name="FechaRegistroAlumno" length="19" />
         </property>
-        <set name="apoderados" table="apoderado" inverse="true" lazy="true" fetch="select">
+        <set name="apoderados" table="apoderado" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="alumno_IdAlumno" not-null="true" />
             </key>

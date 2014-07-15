@@ -14,11 +14,11 @@
         <title>Comunica - Sistema de Comunicaciones</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- Custom styles for this template -->
-        <link href="css/cover.css" rel="stylesheet">
+        <link href="bootstrap/css/cover.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -43,25 +43,24 @@
                             </ul>
                         </div>
                     </div>
+                    
                     <s:if test="hasActionErrors()">
                         <div class="alert alert-danger alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <s:actionerror/>
                         </div>
-
-
-
                     </s:if>
+                    
                     <h2 class="form-signin-heading">Bienvenido <s:text name="%{typeUser}"></s:text></h2>
                     <s:form cssClass="form-signin" role="form"  action="LoginAction">  
                         <s:textfield type="email" required="" cssClass="form-control" placeholder="Email" name="user.email"></s:textfield>  
                         <s:password cssClass="form-control" required="" placeholder="Contresaña" name="user.clave"></s:password>  
-                        <s:hidden name="user.type" value="%{typeUser}" name="user.type"></s:hidden>
+                        <s:hidden value="%{typeUser}" name="user.type"></s:hidden>
                         <s:submit cssClass="btn btn-lg btn-primary btn-block" value="Ingresar"></s:submit>  
                     </s:form> 
                     <div class="mastfoot">
                         <div class="inner">
-                            <p>Grupo EECC</p>
+                            <p>&copy; EECC 2014</p>
                         </div>
                     </div>
                 </div> <!-- /container -->
