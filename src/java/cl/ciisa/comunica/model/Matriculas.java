@@ -11,12 +11,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Esteban
@@ -49,7 +43,6 @@ public class Matriculas {
     }
 
     public void addApoderado(String nombre, String ap_pat, String ap_mat, String email, String passw) {
-        // Alumno a = this.getAlumnoLastId();
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         Apoderado ap = new Apoderado();

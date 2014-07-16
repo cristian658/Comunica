@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.ciisa.comunica.controller;
 
 import cl.ciisa.comunica.entity.Alumno;
@@ -36,9 +31,8 @@ public class nuevaComunicacionAction extends ActionSupport {
         Integer idSession = (Integer) session.get("id");
         String typeUserSession = (String) session.get("typeUser");
         comunBandeja = new ComunicacionBandeja();
-        if (/*this.option != null &&*/ session != null && !session.isEmpty() &&
-           (typeUserSession.equals("Profesor") || typeUserSession.equals("Apoderado"))) {
-            if (typeUserSession.equals("Profesor")) {
+        if (session != null && !session.isEmpty()) {
+            if (typeUserSession.equals("Profesor") && option != null) {
                 if (idSession != null) {
                     profesor = comunBandeja.getProfesor(idSession);
                     alumnos = comunBandeja.getAlumnos(profesor.getCurso());
@@ -76,16 +70,6 @@ public class nuevaComunicacionAction extends ActionSupport {
         return SUCCESS;
     }
 
-    /*public void validate() {
-        if (this.option != null) {
-            if (asunto != null && asunto.equals("")) {
-                addActionError("Ingrese asunto de la comunicación");
-            }
-            if (mensaje != null && mensaje.equals("")) {
-                addActionError("Ingrese mensaje de la comunicación");
-            }
-        }
-    }*/
 
     public void setAsunto(String asunto) {
         this.asunto = asunto;

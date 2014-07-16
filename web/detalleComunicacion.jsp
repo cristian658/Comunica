@@ -79,7 +79,7 @@
             <!-- Main component for a primary marketing message or call to action -->
             <s:iterator value="dcPrimerRegistroDeLaLista"> 
                 <div class="well">
-                    <h2>Detalle '<s:property value="asunto"/>'</h2>      
+                    <h3>Asunto <i>'<s:property value="asunto"/>'</i></h3>      
                 </div>
                 <div class="row">                                  
                     <div class="col-sm-7">

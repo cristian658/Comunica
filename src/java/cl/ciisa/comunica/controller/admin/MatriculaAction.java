@@ -10,13 +10,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Esteban
@@ -49,11 +42,6 @@ public class MatriculaAction extends ActionSupport {
                         this.getAp_Paterno_Alumno(),
                         this.getAp_Materno_Alumno(),
                         this.getId_Curso());
-
-                /*List<Alumno> a = this.matriculas.getAlumnoLastId();
-                 for(Alumno al: a ){                        
-                 Integer.parseInt(al.getIdAlumno().toString()));
-                 }*/
                 this.matriculas.addApoderado(this.getNombre_Apoderado(),
                         this.getAp_Paterno_Apoderado(),
                         this.getAp_Materno_Apoderado(),

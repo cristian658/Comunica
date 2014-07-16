@@ -84,6 +84,15 @@
           <h2>Bandeja de Comunicaciones</h2>      
       </div>
       <p>
+      <div class="row">
+            <div class="col-xs-3">
+            <strong>Enviados</strong>
+            <button type="button" class="btn" style="background-color: #5cb85c;"></button>
+            <strong>Recibidos</strong>
+            <button type="button" class="btn" style="background-color: #eee"></button>
+            </div>
+          <br><br>
+      </div>
            <div class="row">
                
                     <div class="col-xs-7">

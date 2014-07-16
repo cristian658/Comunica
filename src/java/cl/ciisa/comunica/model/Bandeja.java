@@ -29,7 +29,6 @@ public class Bandeja {
                 query = "Select dc from Detallecomunicacion dc where dc.comunicacion.profesor.idProfesor = :id"
                         + " group by dc.asunto"
                         + " order by dc.fechaRegistroComunicacion asc";
-               // query = "Select c from Comunicacion c where c.profesor.idProfesor = :id";
                 break;
             case "Apoderado":
                 Matriculas m = new Matriculas();
@@ -39,10 +38,6 @@ public class Bandeja {
                         + " and dc.comunicacion.profesor.curso.idCurso = :idCurso"
                         + " group by dc.asunto"
                         + " order by dc.fechaRegistroComunicacion asc";
-                /*query = "Select c from Comunicacion c where "
-                        + "(c.apoderado.idApoderado = :id or c.apoderado.idApoderado = null)"
-                        + " and c.profesor.curso.idCurso = :idCurso";
-                */
                 break;
         }
         Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
