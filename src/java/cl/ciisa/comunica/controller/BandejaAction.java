@@ -1,6 +1,5 @@
 package cl.ciisa.comunica.controller;
 
-import cl.ciisa.comunica.entity.Comunicacion;
 import cl.ciisa.comunica.entity.Detallecomunicacion;
 import cl.ciisa.comunica.model.Bandeja;
 import cl.ciisa.comunica.model.User;
@@ -16,7 +15,6 @@ import java.util.Map;
  */
 public class BandejaAction extends ActionSupport {
     private User user;
-    //public List<Comunicacion> comunicaciones;
     public List<Detallecomunicacion> comunicaciones;
     public String execute(){
         Map<String, Object> session = ActionContext.getContext().getSession();
@@ -24,8 +22,7 @@ public class BandejaAction extends ActionSupport {
            (session.get("typeUser").equals("Profesor") || session.get("typeUser").equals("Apoderado"))){
             this.user = new User((Integer)session.get("id"), (String)session.get("correo"), (String)session.get("typeUser"));
             Bandeja b = new Bandeja(this.user);
-            comunicaciones = b.getComunicacionesPrincipales();
-            
+            comunicaciones = b.getComunicacionesPrincipales();            
             return SUCCESS;  
         }  
         return ERROR;
