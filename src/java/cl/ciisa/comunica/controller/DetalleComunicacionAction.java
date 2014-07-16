@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.ciisa.comunica.controller;
 
 import cl.ciisa.comunica.entity.Detallecomunicacion;
@@ -32,12 +27,11 @@ public class DetalleComunicacionAction extends ActionSupport {
 
             if (idComunicacion != null) {
                 this.dcPrimerRegistroDeLaLista = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion).get(0);            
-
+                
                 if (mensajeDeForm != null) {
                     this.detalleComunicaciones.addRespuesta(mensajeDeForm, null, session.get("correo").toString(), idComunicacion, dcPrimerRegistroDeLaLista);
                     this.setMensajeDeForm("");
-                    this.setIdComunicacion(0);
-                    return "BANDEJA";
+                    return "DETALLE";
                 }
                 this.dcByIdComunicacionPrincipalList = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion);
             }

@@ -80,10 +80,6 @@ public class ComunicacionBandeja {
         s.close();
         return this.profesor;
     }
-
-    /*public Curso getCursoByProfesor(Profesor profesor) {
-     return profesor.getCurso();
-     }*/
     public List<Alumno> getAlumnos(Curso curso) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();

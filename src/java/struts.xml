@@ -34,7 +34,7 @@
         <action name="DetalleComunicacionAction" class="cl.ciisa.comunica.controller.DetalleComunicacionAction" method="execute">
             <result name="input" >/detalleComunicacion.jsp</result>
             <result name="success" >/detalleComunicacion.jsp</result>
-            <result name="BANDEJA" type="redirectAction">BandejaAction</result>
+            <result name="DETALLE" type="redirectAction">DetalleComunicacionAction?idComunicacion=${idComunicacion}</result>
             <result name="error" type="redirectAction">LoginAction</result>
         </action>  
         <!-- Administrador -->
