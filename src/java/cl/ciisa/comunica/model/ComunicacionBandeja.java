@@ -7,6 +7,7 @@ import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.entity.Detallecomunicacion;
 import cl.ciisa.comunica.entity.Profesor;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.SendEmail;
 import static java.lang.Boolean.*;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +67,9 @@ public class ComunicacionBandeja {
                 ex.printStackTrace();
             } finally {
                 s.close();
+                SendEmail se = new SendEmail("Nueva Comunicacion", "", profesor.getEmailProfesor());
+                se.setBody(se.getBodyNuevaComunicacion(asunto));
+                se.send();
             }
         }
 
@@ -80,6 +84,7 @@ public class ComunicacionBandeja {
         s.close();
         return this.profesor;
     }
+
     public List<Alumno> getAlumnos(Curso curso) {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
@@ -127,6 +132,11 @@ public class ComunicacionBandeja {
                 ex.printStackTrace();
             } finally {
                 s.close();
+                if (idAlumno != null) {
+                    SendEmail se = new SendEmail("Nueva Comunicacion", "", this.apoderado.getEmailApoderado());
+                    se.setBody(se.getBodyNuevaComunicacion(asunto));
+                    se.send();
+                }
             }
         }
 
