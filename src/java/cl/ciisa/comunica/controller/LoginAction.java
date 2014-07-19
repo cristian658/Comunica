@@ -62,14 +62,15 @@ public class LoginAction extends ActionSupport  {
     public void validate() {
         if (user != null) {
             if (user.getEmail().equals("")) {
-                addFieldError("user.email", "El campo E-mail esta vacio");
-            }
-            if(!user.validUser()){
-                addActionError("Usuario o clave mal ingresada");
+                addActionError("El campo E-mail esta vacio");
             }
             if(user.getType().equals("")){
                 addActionError("Falta Tipo de usuario");
             }
+            else if(!user.validUser()){
+                addActionError("Usuario o clave mal ingresada");
+            }
+            
         }
     }
 

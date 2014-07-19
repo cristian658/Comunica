@@ -49,6 +49,24 @@ public class SendEmail {
     public void setTo(String to) {
         this.to = to;
     }
+    
+    public String getBodyNuevaComunicacion(String Asunto){
+        String comunicacionNueva = "Estimado:\n "
+                                    + "Se ha enviado una nueva comunicacion:\n"
+                                    + "'{asunto}'\n"
+                                    + "Favor ingrese al sistema Comunica para ver mas detalle";
+        comunicacionNueva = comunicacionNueva.replace("{asunto}", Asunto);
+        return comunicacionNueva;
+    }
+    
+    public String getBodyRespuestaComunicacion(String Asunto){
+        String comunicacionNueva = "Estimado:\n "
+                                    + "Se ha respondido la comunicacion:\n"
+                                    + "'{asunto}'\n"
+                                    + "Favor ingrese al sistema Comunica para ver mas detalle";
+        comunicacionNueva = comunicacionNueva.replace("{asunto}", Asunto);
+        return comunicacionNueva;
+    }
 
     public void send() {
         try {

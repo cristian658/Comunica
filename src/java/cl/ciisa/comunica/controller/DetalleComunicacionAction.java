@@ -26,18 +26,27 @@ public class DetalleComunicacionAction extends ActionSupport {
                 && (session.get("typeUser").toString().equals("Profesor") || session.get("typeUser").toString().equals("Apoderado"))) {
 
             if (idComunicacion != null) {
-                this.dcPrimerRegistroDeLaLista = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion).get(0);            
-                
+                this.dcPrimerRegistroDeLaLista = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion, session.get("correo").toString()).get(0);
+
                 if (mensajeDeForm != null) {
                     this.detalleComunicaciones.addRespuesta(mensajeDeForm, null, session.get("correo").toString(), idComunicacion, dcPrimerRegistroDeLaLista);
                     this.setMensajeDeForm("");
                     return "DETALLE";
                 }
-                this.dcByIdComunicacionPrincipalList = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion);
+                this.dcByIdComunicacionPrincipalList = this.detalleComunicaciones.getDetalleComunicacionByIdComunicacionPrincipal(idComunicacion, session.get("correo").toString());
             }
             return SUCCESS;
         }
         return ERROR;
+    }
+
+    public void validate() {
+        if (mensajeDeForm != null) {
+            if (mensajeDeForm.equals("")) {
+                addActionError("Ingresar su respuesta");
+            }
+        }
+
     }
 
     public Integer getIdComunicacion() {

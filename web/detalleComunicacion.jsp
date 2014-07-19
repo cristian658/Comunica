@@ -75,15 +75,19 @@
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
             </div>
-
-            <!-- Main component for a primary marketing message or call to action -->
+            <s:if test="hasActionErrors()">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <s:actionerror/>
+                </div>
+            </s:if>
             <s:iterator value="dcPrimerRegistroDeLaLista"> 
                 <div class="well">
                     <h3>Asunto <i>'<s:property value="asunto"/>'</i></h3>      
                 </div>
                 <div class="row">                                  
-                    <div class="col-sm-7">
-                        <div class="list-group">
+                    <div class="col-sm-7"><!--<col-sm-7>-->
+                        <div class="list-group"><!--<list>-->
                             <s:iterator value="dcByIdComunicacionPrincipalList"> 
                                 <a class="list-group-item">
                                     <h4 class="list-group-item-heading">
@@ -108,8 +112,8 @@
                                 <br>
                             </s:if>
                             <a href="BandejaAction.action"><button type="button" class="btn btn-primary">Volver a bandeja</button></a>
-                        </div><!--list-->
-                    </div><!--col-sm-7-->
+                        </div><!--</list>-->
+                    </div><!--</col-sm-7>-->
                 </div><!--row-->
             </s:iterator>  <!--iterator 2--> 
             <!--hr>
