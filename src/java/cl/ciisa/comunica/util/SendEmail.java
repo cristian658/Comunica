@@ -71,12 +71,13 @@ public class SendEmail {
     public void send() {
         try {
             Properties properties = new Properties();
-            properties.put("mail.smtp.host", "smtp.gmail.com");
-            properties.put("mail.smtp.socketFactory.port", "465");
-            properties.put("mail.smtp.socketFactory.class",
-                    "javax.net.ssl.SSLSocketFactory");
             properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.port", "465");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.quitwait", "false");
+            properties.put("mail.debug", "false");
+            properties.put("mail.smtp.protocol", "smtps");
             Session session = Session.getInstance(properties,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication

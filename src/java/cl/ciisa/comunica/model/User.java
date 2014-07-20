@@ -4,6 +4,7 @@ import cl.ciisa.comunica.entity.Administrador;
 import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Profesor;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.Crypt;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -95,21 +96,22 @@ public class User {
                 if (objects.get(0) instanceof Profesor) {
                     Profesor p = (Profesor) objects.get(0);
                     id = p.getIdProfesor();
-                    if (!p.getPasswordProfesor().equals(this.getClave())) {
+                    if(!Crypt.compare(Crypt.digest(this.clave), p.getPasswordProfesor())){
                         return false;
                     }
                 }
                 if (objects.get(0) instanceof Apoderado) {
                     Apoderado a = (Apoderado) objects.get(0);
                     id = a.getIdApoderado();
-                    if (!a.getPasswordApoderado().equals(this.getClave())) {
+                    if (!Crypt.compare(Crypt.digest(this.clave), a.getPasswordApoderado())) {
                         return false;
                     }
                 }
                 if (objects.get(0) instanceof Administrador) {
                     Administrador a = (Administrador) objects.get(0);
                     id = a.getIdAdministrador();
-                    if (!a.getPasswordAdministrador().equals(this.getClave())) {
+                    
+                    if(!Crypt.compare(Crypt.digest(this.clave), a.getPasswordAdministrador())){
                         return false;
                     }
                 }

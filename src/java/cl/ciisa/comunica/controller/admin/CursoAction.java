@@ -38,8 +38,9 @@ public class CursoAction extends ActionSupport {
             if (cursos.validCurso(nombre)) {
                 addActionError("Ya existe el curso '"+nombre+"'");
             }
+            if(nombre.equals("")){
+                addActionError("Debe ingresar un curso");
+            }
         }
-
     }
-
 }
