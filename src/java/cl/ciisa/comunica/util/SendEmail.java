@@ -49,16 +49,35 @@ public class SendEmail {
     public void setTo(String to) {
         this.to = to;
     }
+    
+    public String getBodyNuevaComunicacion(String Asunto){
+        String comunicacionNueva = "Estimado:\n "
+                                    + "Se ha enviado una nueva comunicacion:\n"
+                                    + "'{asunto}'\n"
+                                    + "Favor ingrese al sistema Comunica para ver mas detalle";
+        comunicacionNueva = comunicacionNueva.replace("{asunto}", Asunto);
+        return comunicacionNueva;
+    }
+    
+    public String getBodyRespuestaComunicacion(String Asunto){
+        String comunicacionNueva = "Estimado:\n "
+                                    + "Se ha respondido la comunicacion:\n"
+                                    + "'{asunto}'\n"
+                                    + "Favor ingrese al sistema Comunica para ver mas detalle";
+        comunicacionNueva = comunicacionNueva.replace("{asunto}", Asunto);
+        return comunicacionNueva;
+    }
 
     public void send() {
         try {
             Properties properties = new Properties();
-            properties.put("mail.smtp.host", "smtp.gmail.com");
-            properties.put("mail.smtp.socketFactory.port", "465");
-            properties.put("mail.smtp.socketFactory.class",
-                    "javax.net.ssl.SSLSocketFactory");
             properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.port", "465");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.quitwait", "false");
+            properties.put("mail.debug", "false");
+            properties.put("mail.smtp.protocol", "smtps");
             Session session = Session.getInstance(properties,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication

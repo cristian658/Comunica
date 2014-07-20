@@ -16,7 +16,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Bienvenido <s:text name="%{#session.correo}"></s:text></title>
+    <title>Sistema - Comunica</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -72,6 +72,7 @@
               
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a>Bienvenido : <s:text name="%{#session.correo}"></s:text></a></li>
               <li><a href="<%= request.getContextPath() %>/logoutAction.action">Salir</a></li>
             </ul>
           </div><!--/.nav-collapse -->
