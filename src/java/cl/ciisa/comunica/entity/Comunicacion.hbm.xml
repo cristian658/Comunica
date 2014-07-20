@@ -14,7 +14,7 @@
         <many-to-one name="apoderado" class="cl.ciisa.comunica.entity.Apoderado" fetch="select">
             <column name="apoderado_IdApoderado" not-null="true" />
         </many-to-one>
-        <set name="detallecomunicacions" table="detallecomunicacion" inverse="true" lazy="false" fetch="select">
+        <set name="detallecomunicacions" table="detallecomunicacion" inverse="true" order-by="comunicacion_Id_Comunicacion desc" lazy="false" fetch="select">
             <key>
                 <column name="comunicacion_Id_Comunicacion" not-null="true" />
             </key>

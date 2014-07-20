@@ -4,7 +4,10 @@ import cl.ciisa.comunica.entity.Alumno;
 import cl.ciisa.comunica.entity.Apoderado;
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.Crypt;
 import cl.ciisa.comunica.util.SendEmail;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -19,6 +22,7 @@ public class Matriculas {
 
     public Alumno alumno;
     Cursos cursos = new Cursos();
+    
 
     public void addAlumno(String nombre, String ap_pat, String ap_mat, int id_curso) {
         Curso c = cursos.getCursoById(id_curso);
@@ -46,24 +50,30 @@ public class Matriculas {
         Session s = ComunicaHibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         Apoderado ap = new Apoderado();
+        Boolean send = true;
         try {
+            
+            String passCod = Crypt.digest(passw);
             ap.setNombreApoderado(nombre);
             ap.setApellidoPatApoderado(ap_pat);
             ap.setApellidoMatApoderado(ap_mat);
             ap.setEmailApoderado(email);
-            ap.setPasswordApoderado(passw);
+            ap.setPasswordApoderado(passCod);
             ap.setFechaRegistroApoderado(new Date());
             ap.setAlumno(this.alumno);
             s.save(ap);
             t.commit();
 
         } catch (HibernateException ex) {
+            ex.printStackTrace();
             t.rollback();
-
-        } finally {
-            sendEmail(nombre, ap_pat, email, passw, 
-                    this.alumno.getNombreAlumno(), this.alumno.getApellidoPatAlumno()
-            );
+            send = false;
+        }finally {
+            if(send){
+                sendEmail(nombre, ap_pat, email, passw, 
+                        this.alumno.getNombreAlumno(), this.alumno.getApellidoPatAlumno()
+                );
+            }
             s.close();
         }
     }

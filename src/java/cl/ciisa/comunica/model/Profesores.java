@@ -3,6 +3,7 @@ package cl.ciisa.comunica.model;
 import cl.ciisa.comunica.entity.Curso;
 import cl.ciisa.comunica.entity.Profesor;
 import cl.ciisa.comunica.util.ComunicaHibernateUtil;
+import cl.ciisa.comunica.util.Crypt;
 import cl.ciisa.comunica.util.SendEmail;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +28,13 @@ public class Profesores {
         Transaction tx = session.beginTransaction();
         Profesor p = new Profesor();
         try {
+            String passCod = Crypt.digest(pass);
             p.setFechaRegistroProfesor(new Date());
             p.setNombreProfesor(nombre_profesor);
             p.setApellidoPatProfesor(apellido_profesor);
             p.setApellidoMatProfesor(apellido2_profesor);
             p.setEmailProfesor(mail);
-            p.setPasswordProfesor(pass);
+            p.setPasswordProfesor(passCod);
             p.setCurso(c);
             session.save(p);
             tx.commit();
