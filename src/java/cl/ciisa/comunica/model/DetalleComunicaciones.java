@@ -17,6 +17,12 @@ import org.hibernate.Transaction;
  */
 public class DetalleComunicaciones {
 
+    /**
+     * Trae todas las respuesta de la comunicacion principal
+     * @param idComunicacion
+     * @param correoConectado
+     * @return 
+     */
     public List<Detallecomunicacion> getDetalleComunicacionByIdComunicacionPrincipal(Integer idComunicacion, String correoConectado) {
         Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -29,6 +35,14 @@ public class DetalleComunicaciones {
         return detalleComunicaciones;
     }
 
+    /**
+     * Este metodo se encarga de agregar una respuesta a la comunicacion principal
+     * @param mensaje
+     * @param destinatario
+     * @param correoSession
+     * @param idComunicacion
+     * @param dcPrimerRegistroDeLaLista 
+     */
     public void addRespuesta(String mensaje, String destinatario, String correoSession, Integer idComunicacion,
             Detallecomunicacion dcPrimerRegistroDeLaLista) {
         
@@ -58,11 +72,14 @@ public class DetalleComunicaciones {
         }
     }
     
+    /**
+     * Cambia de estado las comunicaciones, esto con el objetivo de saber si leyó
+     * la comunicacion
+     * @param detallesComunicacion
+     * @param correo 
+     */
     public void changeStatus(List<Detallecomunicacion> detallesComunicacion, String correo){
-        System.out.println("Correo "+correo);
-        
         for(Detallecomunicacion dc : detallesComunicacion){
-            System.out.println("Destinatario "+dc.getDestinatario());
             if((dc.getEstado()!= null && dc.getDestinatario() != null) && dc.getEstado().equals(false) && dc.getDestinatario().equals(correo)){
                 Session session = ComunicaHibernateUtil.getSessionFactory().openSession();
                 Transaction t = session.beginTransaction();
